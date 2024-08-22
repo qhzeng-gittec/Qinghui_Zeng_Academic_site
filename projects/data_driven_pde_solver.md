@@ -11,9 +11,8 @@ However, many classical data-driven methods do not explicitly incorporate tempor
 Let's start by noticing the connection between CNN (convolutional neural network) and finite difference.
 
 Consider a 1D signal sampled from a function, with a spatially discrete step size \(h\). Let's denote it as \(f = [u_1, u_2, \dots, u_n]\). Assume a trained CNN kernel is like \([1/h, -2/h, 1/h]\). It happens that if the data \(f\) is convolved by this kernel, the result is the central difference scheme for the second derivative. Following this idea, I found that multiple channel cnn is capable of descretilizing complex pdes. Forexample, the monenton equation of navier stokes equations is 
-\[
-\frac{\partial \mathbf{u}}{\partial t}  = -\frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} - (\mathbf{u} \cdot \nabla) \mathbf{u}
-\]
+![Equation](https://latex.codecogs.com/png.latex?\frac{\partial \mathbf{u}}{\partial%20t}%20=%20-\frac{1}{\rho}%20\nabla%20p%20+%20\nu%20\nabla^2%20\mathbf{u}%20-%20(\mathbf{u}%20\cdot%20\nabla)%20\mathbf{u})
+
 it involves zero, first and second order derivative, and they formed a non-linear term. To approximate the operator at the right handside, one can set the CNN(without nonlinear activation function) to have 3 channel, each channel's kernel would act as different order of gradinet operator. After a 2d vorticity field(scaler field) is passed through it, output would have 3 channel reperseting the derivatives of the vorticity at each sampeled points! then, acompanied with spatial and time data, we can approximate the RHS operator by a simple feed forward neural network, no matter how complex the non-linear part is! Now, the equatioin can be written as \( \frac{du}{dt} = f(u,\theta)\), \(f(,theta)\) represent the trained neural network. This ODE can be solved by simple numerical ODE solver like Euler method(higher order method may not stable during training) to obtain solution at different time step.
 
 
