@@ -1,4 +1,5 @@
-# Background
+# Hybrid Time-Marching With Neural Network Approach for Solving Nonlinear PDEs 
+## Background
 
 Most physical phenomena develop over time, and the state at the next time step (viewed from a discrete aspect) is determined by its current state and the effect of neighboring states. This is why almost all physical phenomena can be described by partial differential equations.
 
@@ -6,7 +7,7 @@ In traditional numerical methods, complex nonlinear neighboring effects (nonline
 
 However, many classical data-driven methods do not explicitly incorporate temporal advancement (like DeepONet or FNO), which can lead to instability and confusion in the solutions. My goal is to develop a method that combines the universal approximation capabilities of data-driven approaches with physically meaningful time-marching methods.
 
-# Methods
+## Methods
 
 Let's start by noticing the connection between CNN (convolutional neural network) and finite difference.
 
@@ -29,14 +30,14 @@ A layer of a feedforward network is applied to each "pixel," aggregating operato
 
 ### Time Advancement
 
-# Implementation and Testing
+## Implementation and Testing
 
 To validate my method, I used it to solve the incompressible 2D Navier-Stokes (NS) equations, with a viscosity coefficient \( \nu = 1e-3\) as shown above, and a zero boundary condition. The reference solution is solved numerically using the finite difference method. This is also where the training data comes from, but it is coarser. The solution is calculated at multiple time steps for each initial condition, and the loss is the MSE error between the predicted solution and the reference one at different time steps. Compared to the reference solution, the predicted solution usually has a 7~8% error, indicating that more detailed diagnostics need to be done, as the best result achieved for neural operator solvers on this dataset is below 1%.
 
-# Future Work
+## Future Work
 I have come up with a few more ideas to improve the accuracy of this method. The first one is better treatment of boundary conditions. In the above test case, the boundary condition is imposed simply by data points, but actually, I can update only the inner points while fixing the boundary unchanged.
 
 Another possible improvement is using previous \(n\) time steps' solutions as initial values instead of just one. This way, each solution is derived based on the previous \(n\) steps, which is called a multiple-step method in finite difference.
 
-## Some Other Remarks
+### Some Other Remarks
 This project was developed in April 2024, under the guidance of Professor Xiaoning Zheng. Although this method seems promising, I was not able to further refine it for multiple reasons. On the one hand, for an undergraduate project, it is really hard to outperform other machine learning algorithms. It requires abundant experience in machine learning and a higher level of knowledge. In addition, I am more interested in more theoretical work, and testing and refining codes might be a bit boring for me.
