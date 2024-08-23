@@ -1,4 +1,6 @@
-My research journey has often been filled with frustration, but also the joy of overcoming challenges. My experience in the research field, particularly in applied mathematics, has provided me with numerous opportunities to explore complex problems, navigate obstacles, and develop strategies to overcome them. Through these experiences, I've learned not only the technical skills necessary to conduct research but also the critical thinking and persistence required to push through difficulties. In this blog, I aim to share some of the key challenges I've encountered during my research projects, as well as the strategies and insights I've developed to address them.
+#Navigating the Complexities of Research: Lessons from My Undergraduate Journey
+
+My experience in the research field, particularly in applied mathematics, has provided me with numerous opportunities to explore complex problems, navigate obstacles, and develop strategies to overcome them. Through these experiences, I've learned not only the technical skills necessary to conduct research but also the critical thinking and persistence required to push through difficulties. In this blog, I aim to share some of the key challenges I've encountered during my research projects, as well as the strategies and insights I've developed to address them.
 
 These experiences might be suitable only for simple undergraduate projects; I will consider them more carefully before adopting them in graduate studies.
 
