@@ -31,3 +31,5 @@ Although it is a boring job, it is also a crucial skill in computational mathema
 
 **Test from the simplest case:**  
 If the code works for a complex problem, try to derive a simplest case where you have clear expectations for each output. Check the output from each intermediate step to see if it aligns with expectations. If it works well in such a case, gradually add more complex structures. If the code seems correct, but the results are still strange, try analyzing the error introduced by the algorithm, like perturbation theory and truncation error.
+
+But from my experience, the very "bad" problem, where the states changes dramatically, often cause the failure. There was a time I spent days checking my formula and bugs in code. But actually they are all fine. It was the inappropriate paramter setting that let the numerical solver performed badly. This made me understand that numerical solvers aren't so powerfull as I think, and it is only an alternative approach when exact solutions hard to find, like fluid dynamic problems. They are usefull, but to fully understand the problem, we need to approch it from theoretical side.
