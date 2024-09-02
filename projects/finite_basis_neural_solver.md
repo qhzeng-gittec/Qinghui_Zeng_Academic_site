@@ -44,5 +44,7 @@ The training dataset was generated using a random function field, and the refere
 ### other notes
 These works was constructed between March and April, 2024
 
-Although the approach seems workable, I was unable to finish implementing it because the professor was too busy to offer further guidance, and I understand that machine learning requires numerous adjustments, which might not be accomplished on my own. It was really a pitty.
+Although the approach seems workable, I was unable to finish implementing it because the professor was too busy to offer further guidance, and I understand that machine learning requires numerous adjustments, which might not be accomplished on my own. It was really a pitty. 
+
+But later, I found that KAN(Kolmogorov-Arnold Networks) share a similar structure as this model. I think this model can be viewed as a KAN, with only one layer, and one output. They both use linear combination of spline functions to approximate data. And update the combination paramters by minimizing a loss function.    
 
