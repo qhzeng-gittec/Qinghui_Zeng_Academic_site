@@ -1,6 +1,6 @@
 # About Me
 
-Hi! I'm Qinghui, an undergraduate student in the Science program of Information and Computational Science at Jinan University in Guangzhou, China. I am in my fourth year of college, and I am looking for opportunities for graduate studies in applied or computational mathematics.
+Hi! I'm Qinghui, an undergraduate student in the Science program of Information and Computational Science at Jinan University in Guangzhou, China. I am in my fourth year of college, and I am looking for opportunities for graduate studies in applied or computational mathematics. I am tipically interested in schools in America.
 
 If you wish to reach out to me, feel free to contact me via email at [zengqh23@outlook.com](mailto:zengqh23@outlook.com).
 
