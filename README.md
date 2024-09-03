@@ -30,6 +30,10 @@ The operator marching scheme is an efficient solver for the Helmholtz equation. 
 
 Since I am still working on this project, a more detailed description will be presented later.
 
+### Machine learning model for gene expression prediction
+I am also collaborating with a group of students to use machine learning models to gain a deeper understanding of gene expression. My responsibilities include implementing code and conducting experiments. You can read more about this project [here](https://github.com/JasonLinjc/Seinformer).
+
+
 ## Future Aspirations
 
 Looking ahead, my goal is to pursue a Ph.D. in applied mathematics. I want to contribute to mathematical physics by developing new theories that help us understand complex physical phenomena, whether in fluid dynamics or astrophysics. I am excited about my future academic journey and the chance to work with experts and doing advanced research!
