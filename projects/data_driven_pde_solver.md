@@ -1,4 +1,6 @@
 # Hybrid Time-Marching With Neural Network Approach for Solving Nonlinear PDEs 
+![cilinderfolow](https://github.com/user-attachments/assets/bb4551ae-25c8-45bc-946f-128cd005efa8)
+
 ## Background
 
 Most physical phenomena develop over time, and the state at the next time step (viewed from a discrete aspect) is determined by its current state and the effect of neighboring states. This is why almost all physical phenomena can be described by partial differential equations.
