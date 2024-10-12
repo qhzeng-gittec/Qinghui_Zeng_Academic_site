@@ -1,50 +1,47 @@
 # Neural Network-Based PDE Solution Representation Using Locally Supported Spline Basis Functions
 
-## Background
+## Introduction
 
-The finite element method uses local basis functions to approximate the solution of a PDE. The method first defines a function space \( \{\phi_i\} \), where the basis functions are often simple functions that exist in separate subdomains. This approach increases the accuracy of the solution by allowing the choice of smaller grid sizes.
+The finite element method (FEM) is a widely used technique for approximating the solutions of partial differential equations (PDEs). It relies on local basis functions to represent the solution in a discrete domain. In this method, a function space \( \{\phi_i\} \) is defined, where the basis functions \( \phi_i \) are typically simple, locally supported functions that are non-zero in specific subdomains. This localized nature of the basis functions enhances the accuracy of the solution, particularly by enabling finer grid discretization.
 
-The solution is then assumed to be represented by this set of functions:
+The approximate solution can be written as:
 
 $$ u(x) \approx \sum_{i} c_{i} \phi_{i}(x) $$
 
-The coefficients  $c_i$ are typically solved using calculus of variations methods, which are particularly suitable for time-independent PDEs. My goal is to explore whether a neural network can be trained to find these coefficients \( c_{i} \) when a set of basis functions \( \{\phi_i\} \) is given. The idea is straightforward.
+where \( c_i \) are the coefficients to be determined. Traditionally, these coefficients are obtained through calculus of variations techniques, which are particularly suitable for time-independent PDEs. The objective of this work is to explore whether a neural network can be trained to learn these coefficients \( c_i \), given a pre-defined set of local basis functions \( \{\phi_i\} \).
 
-This work was inspired by Lu Lu's POD-DeepONet, where the author uses POD basis functions. However, I believe that using local basis functions could yield better results.
+This research is motivated by Lu Lu’s work on [POD-DeepONet](https://www.sciencedirect.com/science/article/pii/S0045782522001207), where POD basis functions were used to approximate solutions. Here, I hypothesize that utilizing locally supported basis functions, such as splines, may offer better performance due to their locality and flexibility.
 
-## Methods
+## Methodology
 
-First, I needed to find a set of locally supported basis functions. These functions should be continuous and have a value of zero outside a certain region, with some overlap in their regions of support. This overlap allows for the construction of a continuous function when the basis functions are summed. 
+The first step in this approach is to identify a set of locally supported basis functions. Splines are a natural choice for this purpose. These functions are zero-valued outside their neighboring grid points and non-zero at the center, as illustrated in the figure below:
+<img src="https://github.com/user-attachments/assets/0672f421-a2b8-40d1-a47d-b1e04feb0c70" alt="Spline Function Representation" width="400" />
 
-One approach is to use spline functions. These are zero-valued at neighboring grids and non-zero at the center, as shown in the figure. The coefficients of these basis functions are then produced by a feedforward neural network.
-![output](https://github.com/user-attachments/assets/0672f421-a2b8-40d1-a47d-b1e04feb0c70)
+With some overlap between neighboring regions, the linear combination of a set of spline functions produces a continuous representation of the solution.
 
+The coefficients corresponding to these splines are predicted by a neural network.
 ## Implementation and Testing
 
-I tested this method on a 2D Darcy flow problem:
+To test the proposed method, I applied it to a 2D Darcy flow problem, which models the flow of a fluid through a porous medium:
 
 $$
 -\nabla \cdot \left( k(x, y) \nabla p(x, y) \right) = f(x, y)
 $$
 
-This equation describes the flow of a fluid through a porous medium. The goal was to find the solution given the permeability field $k(x, y)$.
+Here,  $k(x, y)$ represents the permeability field, and $p(x, y)$ is the pressure field to be determined. The goal is to approximate the solution $p(x, y)$ using locally supported spline basis functions.
 
-The 2D spline basis function $\phi_{ij}(x, y)$ is constructed as the outer product of two 1D spline functions:
+The 2D spline basis functions $\phi_{ij}(x, y)$ were constructed as the outer product of 1D splines:
 
 $$ \phi_{ij}(x, y) = \phi_i(x) \cdot \phi_j(y) $$
 
-The solution $u(x, y)$ of the PDE is then approximated as a linear combination of these spline basis functions:
+Thus, the solution $p(x, y)$ is approximated as a linear combination of these basis functions:
 
 $$ u(x, y) \approx \sum_{i,j} c_{ij} \phi_{ij}(x, y) $$
 
-Here, $\phi_{ij}(x, y)$ are the spline basis functions, and $c_{ij}$ are the coefficients to be determined.
+where $c_{ij}$ are the coefficients to be determined. The dataset for training the neural network was generated using random permeability fields $k(x, y)$, while the reference solutions were computed using a traditional finite difference method. A convolutional neural network (CNN) was used to map the permeability field $k(x, y)$ to the corresponding coefficients $c_{ij}$, minimizing the difference between the predicted and exact solutions at specific control points.
 
-The training dataset was generated using a random function field, and the reference solution was obtained from a finite difference method. I used a CNN to map the permeability field $k(x, y)$ to the coefficients. The network was trained by minimizing the difference between the exact solution and the solution at control points.
+## Remarks
 
-### other notes
-These works was constructed between March and April, 2024
+This project was under the guidiance of professor [Xiaoning Zheng](https://scholar.google.com/citations?user=rXW31d8AAAAJ&hl=en-US) carried out between March and April 2024. Although the approach shows potential, the implementation was not fully completed due to limited guidance from my professor, who was unavailable during critical stages of the project. Moreover, machine learning models often require extensive tuning, which I was unable to accomplish on my own. 
 
-Although the approach seems workable, I was unable to finish implementing it because the professor was too busy to offer further guidance, and I understand that machine learning requires numerous adjustments, which might not be accomplished on my own. It was really a pitty. 
-
-But later, I found that KAN(Kolmogorov-Arnold Networks) share a similar structure as this model. I think this model can be viewed as a KAN, with only one layer, and one output. They both use linear combination of spline functions to approximate data. And update the combination paramters by minimizing a loss function.    
-
+Upon further exploration, I discovered that the structure of this model resembles Kolmogorov-Arnold Networks (KAN). Both approaches utilize a linear combination of basis functions—in this case, spline functions—to approximate data, and they update the coefficients by minimizing a loss function. In this sense, the model I proposed can be viewed as a single-layer KAN with one output.
