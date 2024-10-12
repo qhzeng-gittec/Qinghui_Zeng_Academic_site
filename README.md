@@ -1,39 +1,46 @@
 # About Me
 
-Hi! I'm Qinghui, an undergraduate student in the Science program of Information and Computational Science at Jinan University in Guangzhou, China. I am in my fourth year of college, and I am looking for opportunities for graduate studies in applied or computational mathematics. I am tipically interested in schools in America.
+I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.edu.cn/), majoring in Information and Computational Science. I will be graduate by the summer of 2025. and I am seeking graduate study opportunities in applied or computational mathematics.
 
-If you wish to reach out to me, feel free to contact me via email at [zengqh23@outlook.com](mailto:zengqh23@outlook.com).
+For inquiries, you can reach me at [zengqh23@outlook.com](mailto:zengqh23@outlook.com).
 
-## Educational Background
+## Academic Qualifications
+My studies focus on both fundamental mathematical knowledge and its applications. I have completed several advanced courses:
 
-During my undergraduate studies, I have taken a variety of math courses that have enhanced my mathematical abilities. Some of these courses include Numerical Analysis, Topology, Real Analysis, Differential Geometry, Applied Complex Analysis, Ordinary Differential Equations, and Multivariable Statistics. The grades of some courses are provided [here](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/coursegrades.md). These courses have not only been essential tools for solving research problems, but they have also shown me the beauty of interconnected mathematical theories, making me even more interested in math.
+| Course                     |
+|----------------------------|
+| Numerical Methods for Partial Differential Equations |
+| Real Analysis               |
+| General Physics             |
+| Topology                    |
+| Differential Geometry       |
+| Ordinary Differential Equations |
+| Optimization Methods        |
+| Applied Multivariable Statistics |
 
-## Academic Passions
+A complete transcript is available [here].
 
-My main academic interests revolve around applied mathematics, including areas like control theory, numerical methods, and differential equations. Right now, I am especially interested in Mathematical Physics, which involves developing mathematical frameworks for physics or creating numerical methods to solve physics-related problems. I am drawn to the simplicity of mathematics and how it explains physical phenomena, which shows the power of math. You can read more about why I am so interested in math and physics [here](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/reasrch_interest.md). One specific area that fascinates me is fluid dynamics, with its many unsolved challenges like understanding the Navier-Stokes equation's behavior during laminar-to-turbulent transitions. Also, I find aircraft really cool!
+Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0) and a total score of 326 in the GRE General Test (Verbal: 156, Quantitative: 170).
+
+## Research Interests
+
+My primary research interests include the numerical solutions of equations in mathematical physics, mathematical modeling of engineering problems, and fluid simulations. 
 
 ## Projects Overview
 
-Here are some small projects I have done during my undergraduate studies. While some did not become papers, they were interesting trials! From my research experience, I have summarized a few methods on [how to do research](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/research_experience.md).
 
-### [Data-Driven Time-Dependent PDE Solver](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)
+### Approximating Dispersion Relations in a Stratified Waveguide with a Curved Interface in an Open Domain, and Computing Eigenpairs
 
-A technique that uses neural networks to approximate solutions to time-dependent partial differential equations by combining ideas from universal approximation theorems, traditional time-marching schemes, and reduced-order modeling methods.
+The Helmholtz equation is commonly used to model wave propagation. Previous work has utilized an orthogonal coordinate transformation to flatten the curved interface and applied Perfectly Matched Layers (PML) to truncate the open domain for finite computational regions. However, the transformation introduces variable coefficients to the Helmholtz equation, complicating the analysis. Building on research that employs piecewise Kummer functions to approximate eigenfunctions under varying refractive indices, I adapted this method to the transformed Helmholtz equation, deriving an approximate dispersion relation for the eigenpairs. By developing asymptotic solutions, the eigenvalues and eigenfunctions can be computed numerically using Muller's method.
+
+### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs ](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)
+
+This project explores a hybrid time-marching approach that integrates neural networks with traditional numerical methods to solve nonlinear partial differential equations (PDEs). By utilizing convolutional neural networks (CNNs) to approximate spatial derivatives and incorporating time-marching schemes like Euler's method, the approach aims to combine data-driven techniques with physically meaningful temporal evolution.
 
 ### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md)
 
-Similar to the finite element method, this approach determines coefficients for a finite set of functions to approximate solutions. Neural networks "learn" these coefficients from data and a set of basis functions.
+This project explores using neural networks to solve PDEs by representing solutions with locally supported spline basis functions. Inspired by the finite element method (FEM), where local basis functions approximate solutions, the research aims to train a neural network to learn the coefficients of these splines.
 
-### Convenient Basis Transformation for Operator Marching Scheme for Helmholtz Equation
-
-The operator marching scheme is an efficient solver for the Helmholtz equation. However, efficient basis conversion is important when eigenfunctions change over time. By using the orthogonality between the eigenfunctions of the conjugate operator and the Helmholtz operator, a more streamlined basis conversion process can be implemented.
-
-Since I am still working on this project, a more detailed description will be presented later.
-
-### Machine learning model for gene expression prediction
-I am also collaborating with a group of students to use machine learning models to gain a deeper understanding of gene expression. My responsibilities include implementing code and conducting experiments. You can read more about this project [here](https://github.com/JasonLinjc/Seinformer).
+The aboves are some small projects I have done during my undergraduate studies. While some did not become papers, they were interesting trials to find out my interests. From my research experience, I have summarized a few methods on [how to do research](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/research_experience.md).
 
 
-## Future Aspirations
-
-Looking ahead, my goal is to pursue a Ph.D. in applied mathematics. I want to contribute to mathematical physics by developing new theories that help us understand complex physical phenomena, whether in fluid dynamics or astrophysics. I am excited about my future academic journey and the chance to work with experts and doing advanced research!
