@@ -34,7 +34,7 @@
 
 **Weighted average Major Courses Grades**: **88.9**
 
-The origional transcipts in Chinese is at [here]
+The origional transcipts in Chinese is at [here](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/%E6%88%90%E7%BB%A9%E5%8D%95.pdf)
 
 # 2023 UCLA Summer Session
 
