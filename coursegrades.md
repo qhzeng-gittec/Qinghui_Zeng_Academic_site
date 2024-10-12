@@ -1,5 +1,6 @@
 
 # Major Courses grades
+**Note**: courses are graded on a scale of 100.
 | Course Code | Course Name                         | Course Type | Grade | Credit | Grade*Credit  | Semester           |
 |-------------|-------------------------------------|-------------|-------|--------|------|--------------------|
 | 07010033    | Mathematical Analysis I             | Required    | 92    | 4      | 16.8 | 2021-2022 Fall     |
@@ -30,14 +31,12 @@
 | 07020121    | College Physics                   | Elective    | 91    | 4      | 16.4 | 2023-2024 Spring   |
 | 08060226    | C++ Programming                     | Elective    | 89    | 2      | 7.8  | 2023-2024 Spring   |
 
-| **Weighted Major Courses Grades**  | **89.9** |
-| **Weighted Major Courses GPA**     | **3.89** |
 
-**Note**: The GPA is calculated on a 5-point scale, and all courses are graded on a scale of 100.
+**Weighted average Major Courses Grades**: **88.9**
 
 The origional transcipts in Chinese is at [here]
 
-### 2023 UCLA Summer Session
+# 2023 UCLA Summer Session
 
 During the 2023 UCLA Summer Session, I took two courses:
 - **Stats 100C: Linear Models** - Grade: A
