@@ -1,6 +1,6 @@
-# About Me
+## Personal Statement
 
-I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.edu.cn/), majoring in Information and Computational Science. I will be graduate by the summer of 2025. and I am seeking graduate study opportunities in applied or computational mathematics.
+I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.edu.cn/), majoring in Information and Computational Science, under math department. I will be graduated by the summer of 2025. and I am seeking graduate study opportunities in applied or computational mathematics.
 
 For inquiries, you can reach me at [zengqh23@outlook.com](mailto:zengqh23@outlook.com).
 
@@ -18,7 +18,7 @@ My studies focus on both fundamental mathematical knowledge and its applications
 | Optimization Methods        |
 | Applied Multivariable Statistics |
 
-A complete transcript is available [here].
+A complete transcript is available [here](https://github.com/qhzeng-gittec/helloitisqinghui/edit/main/coursegrades.md).
 
 Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0) and a total score of 326 in the GRE General Test (Verbal: 156, Quantitative: 170).
 
@@ -29,7 +29,7 @@ My primary research interests include the numerical solutions of equations in ma
 ## Projects Overview
 
 
-### Approximating Dispersion Relations in a Stratified Waveguide with a Curved Interface in an Open Domain, and Computing Eigenpairs
+### [Approximating Dispersion Relations in a Stratified Waveguide with a Curved Interface in an Open Domain, and Computing Eigenpairs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/new%20method%20for%20eigenmodes%20in%20curved%20interface.pdf)
 
 The Helmholtz equation is commonly used to model wave propagation. Previous work has utilized an orthogonal coordinate transformation to flatten the curved interface and applied Perfectly Matched Layers (PML) to truncate the open domain for finite computational regions. However, the transformation introduces variable coefficients to the Helmholtz equation, complicating the analysis. Building on research that employs piecewise Kummer functions to approximate eigenfunctions under varying refractive indices, I adapted this method to the transformed Helmholtz equation, deriving an approximate dispersion relation for the eigenpairs. By developing asymptotic solutions, the eigenvalues and eigenfunctions can be computed numerically using Muller's method.
 
