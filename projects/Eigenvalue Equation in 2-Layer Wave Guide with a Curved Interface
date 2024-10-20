@@ -1,0 +1,1109 @@
+---
+author:
+- Qinghui
+bibliography:
+- reference.bib
+date: 2024-10-20
+title: Eigenvalue Equation in 2-Layer Wave Guide with a Curved Interface
+---
+# problem setup
+
+The original Helmholtz equation is
+$$\ \rho\left(\frac{1}{\rho} \psi_z \right)_z+ \psi_{xx} + \kappa(z)^2\psi = 0$$
+When the wave guide is stratified, and the interface is curved, namely,
+$$\kappa(z) =
+\begin{cases}
+\kappa_1 & \text{if } z < h(x) \\
+\kappa_2 & \text{if } z>h(x)
+\end{cases}, \quad
+\rho =
+\begin{cases}
+\rho_1 & \text{if } z < h(x) \\
+\rho_2 & \text{if } z>h(x)
+\end{cases}$$ a othogonal transformation can be applied, so that under
+new coordinate $\hat{z}, \hat{x}$, the interface becomes flat.
+$$\kappa(\hat{z}) =
+\begin{cases}
+\kappa_1 & \text{if } \hat{z} < 1 \\
+\kappa_2 & \text{if } \hat{z}>1
+\end{cases},\quad
+\rho =
+\begin{cases}
+\rho_1 & \text{if } \hat{z} < 1 \\
+\rho_2 & \text{if } \hat{z}>1
+\end{cases}$$
+
+The stratified waveguide under new axis is illustrated in the
+figure[1](#fig:threelayer_formulate){reference-type="ref"
+reference="fig:threelayer_formulate"}. The new coordinate is divided
+into three layers along $\hat{z}$ axis, each span from
+$[0, 1], [1,D], [D, D_1]$. and continuously connected at 2 interfaces
+$\hat{z} = 1,\hat{z} = D$. In the third layer, $z$ axis is not
+transformed, so $\hat{z} = z$ in this layer.
+
+Different layers are denoted using superscripts in parentheses,
+$(\ell)$, where $\ell = 1, 2, 3$ corresponds to the first, second, third
+layer coordinate transformation.
+
+![3 layer coordinate transformed
+model](axis_transform.png){#fig:threelayer_formulate
+width="0.5\\linewidth"}
+
+The new coordinate is divided into three layers along $\hat{z}$ axis,
+each span from $[0, 1], [1,D],[D, D_1]$.
+
+After that, we introduce a equation transformation to eliminate the
+$\psi_{\hat{x}}$ term: let
+$$\psi(\hat{x},\hat{z}) = w(\hat{x}, \hat{z})\phi(\hat{x}, \hat{z}) 
+    \label{eq:equationtransform}$$ then, within each layer, the
+transformed Helmholtz equation becomes
+$$\phi_{\hat{x} \hat{x}} + \alpha(\hat{x},\hat{z})\phi_{\hat{z}\hat{z}} + \beta(\hat{x},\hat{z}) \phi_{\hat{z}} +\eta(\hat{x},\hat{z}) \phi= 0, \quad \hat{z} \neq 1, D \nonumber
+\label{eq:transformedhelmholtz}$$ Recall that, $\hat{z} = z$ in the
+third layer of coordinate transformation. Since the refractive index
+does not vary along the original coordinate $z$ axis in the third layer,
+it is also invariant along new axis $\hat{z}$. This is crucial for
+perfect matched layer(PML).
+
+PML is used to truncate the open domain along $\hat{z}$ to a finite
+region. It absorbs wave's energy near the boundary to reduce the
+reflected waves.
+
+It can be derived by a complex coordinate stretching,
+$$\bar{z} = \hat{z} + i \int_0^{\hat{z}} \sigma(s)ds ,\quad \sigma(s) =
+\begin{cases}
+0 & \text{if } s < H \\
+> 0 & \text{if } s \in [H, D_1]
+\end{cases}$$ the resulting effect is
+$$\frac{d}{d\hat{z}} \longrightarrow \frac{1}{1+ i\sigma(\hat{z})}\frac{d}{d\hat{z}}\nonumber$$
+We add the PML only within the third layer, which means $H>D$.
+
+After PML complex coordinate stretching, the eigenvalue problem for
+transformed Helmholtz equation
+([\[eq:transformedhelmholtz\]](#eq:transformedhelmholtz){reference-type="ref"
+reference="eq:transformedhelmholtz"}) becomes $$\left\{
+\begin{aligned}
+    &\alpha \frac{d^2 \phi}{d \bar{z}^2} + \beta \frac{d \phi}{d \bar{z}} +\eta \phi = \lambda \phi, \quad \bar{z}\neq 1,D\\[10pt]
+    &\left( w\phi \right)\Big|_{\hat{z}=1^-} = \left( w\phi \right)\Big|_{\hat{z}=1^+}\\
+    &\frac{1}{\rho_1} w \left\{ \frac{1}{2} \left[ h''(x) - 2 \frac{h'(x)^2}{h(x)} \right] \phi 
+    - \frac{1 + h'(x)^2}{h(x)} \phi_{\bar{z}} \right\} \Bigg|_{\hat{z}=1^-} \\ 
+    &= \frac{1}{\rho_2} w \left\{ \frac{1}{2} \left[ h''(x) + 2 \frac{h'(x)^2}{D - h(x)} \right] \phi 
+    - \frac{D - 1}{D - h(x)} \left[ 1 + h'(x)^2 \right] \phi_{\bar{z}} \right\} \Bigg|_{\hat{z}=1^+}, \\[10pt]
+    &\left( w\phi \right)\Big|_{\hat{z}=D^-} = \left( w\phi \right)\Big|_{\hat{z}=D^+}\\
+    & w \left( \frac{1 - D}{h(x) - D} \phi_{\bar{z}}\right)  \Bigg|_{\hat{z}=D^-} = w\phi_{\bar{z}}\Big|_{\hat{z}=D^+}, \\[10pt]
+    &\phi|_{\hat{z} = 0} = 0, \quad \phi |_{\hat{z} = D} = 0.
+\end{aligned}
+\right.
+\label{eq:orieigenvalueproblem}$$
+
+To further transform this eigenvalue problem to the standard form, we
+introduce a new function $\hat{\phi}$, and let
+$$\phi(\bar{z}) = \hat{\phi}(\bar{z}) \cdot e^{\int_1^{\bar{z}} \mu(s) \, ds}
+\label{eq:Vtransform}$$ Plugging this into the first equation in
+([\[eq:orieigenvalueproblem\]](#eq:orieigenvalueproblem){reference-type="ref"
+reference="eq:orieigenvalueproblem"}) and canceling out the term
+$e^{\int_1^{\bar{z}} \mu(s) \, ds}$, we get: $$\begin{aligned}
+\hat{\phi}(\bar{z}) \left[ \alpha(\bar{z}) \mu'(\bar{z}) 
++ \alpha(\bar{z}) \mu(\bar{z})^2 
++ \beta(\bar{z}) \mu(\bar{z}) 
++ \eta(\bar{z}) \right] 
+ + \frac{d\hat{\phi}(\bar{z})}{d\bar{z}} \left( 2 \alpha(\bar{z}) \mu(\bar{z}) 
++ \beta(\bar{z}) \right) 
+ + \alpha(\bar{z}) \frac{d^2\hat{\phi}(\bar{z})}{d\bar{z}^2} = \lambda \hat{\phi}(\bar{z})
+\end{aligned}
+\label{eq:phieigeqn}$$
+
+To let the terms with $\frac{d \hat{\phi}(\bar{z})}{d\bar{z}}$ to zero,
+$2 \alpha(\bar{z}) \mu(\bar{z}) 
++ \beta(\bar{z}) = 0$. And the resulting $\mu(\bar{z})$ is:
+
+$$\mu(\bar{z}) = -\frac{\beta(\bar{z})}{2 \alpha(\bar{z})}
+\label{eq:musol}$$
+
+plug $\mu(\bar{z})$ from ([\[eq:musol\]](#eq:musol){reference-type="ref"
+reference="eq:musol"}) into
+([\[eq:phieigeqn\]](#eq:phieigeqn){reference-type="ref"
+reference="eq:phieigeqn"}), the eigenvalue equation for
+$\hat{\phi}(\bar{z})$ becomes:
+
+$$\begin{aligned}
+&\left( \frac{\frac{1}{2}(-\beta'(\bar{z}) \alpha(\bar{z}) + \beta(\bar{z}) \alpha'(\bar{z})) 
+-\frac{1}{4} \beta^2(\bar{z})}{\alpha(\bar{z})} + \eta(\bar{z}) \right) 
+\hat{\phi}(\bar{z})
++ \alpha(\bar{z}) \frac{d^2 \hat{\phi}(\bar{z})}{d \bar{z}^2} = \lambda \hat{\phi}(\bar{z}) \label{eq:modified_eigenvalueproblem}\\
+&\text{We denote it as } p(\bar{z}) \hat{\phi} + \alpha(\bar{z}) \hat{\phi}_{\bar{z}\bar{z}} = \lambda \hat{\phi}\nonumber
+\end{aligned}$$
+
+Together with the interface condition for $\hat{\phi}$, which can be
+derived by plugging
+([\[eq:Vtransform\]](#eq:Vtransform){reference-type="ref"
+reference="eq:Vtransform"}) into the boundary conditions in
+([\[eq:orieigenvalueproblem\]](#eq:orieigenvalueproblem){reference-type="ref"
+reference="eq:orieigenvalueproblem"}), the complete eigenvalue problem
+for the new function $\hat{\phi}$ is $$\left\{
+    \begin{aligned}
+        &p(\bar{z}) \hat{\phi} + \alpha(\bar{z}) \hat{\phi}_{\bar{z}\bar{z}}= \lambda \hat{\phi}\\
+        &\left( w\hat{\phi} \right)\Big|_{\hat{z}=1^-} = \left( w\hat{\phi} \right)\Big|_{\hat{z}=1^+}\\
+        &\frac{1}{\rho_1} w \left\{ \left[ \frac{1}{2} h''(x) - \frac{h'(x)^2}{h(x)} - \frac{1 + h'(x)^2}{h(x)} \mu \right] \hat{\phi} - \frac{1 + h'(x)^2}{h(x)} \hat{\phi}_{\bar{z}} \right\} \Big|_{\hat{z}=1^-} \\
+        &= \frac{1}{\rho_2} w \left\{ \left[ \frac{1}{2} h''(x) + \frac{h'(x)^2}{D - h(x)} - \frac{D - 1}{D - h(x)} \left( 1 + h'(x)^2 \right) \mu \right] \hat{\phi} 
+        - \frac{D - 1}{D - h(x)} \left( 1 + h'(x)^2 \right) \hat{\phi}_{\bar{z}} \right\} \Big|_{\hat{z}=1^+}, \\[10pt]
+        &\left( w\hat{\phi} \right)\Big|_{\hat{z}=D^-} = \left( w\hat{\phi} \right)\Big|_{\hat{z}=D^+}, \\
+        &w \left[  \frac{1 - D}{h(x) - D} \hat{\phi}_{\bar{z}} \right] \Big|_{\hat{z}=D^-} = w  \hat{\phi}_{\bar{z}} \Big|_{\hat{z}=D^+}, \\[10pt]
+        &\hat{\phi}|_{\hat{z} = 0} = 0, \quad \hat{\phi}|_{\hat{z} = D_1} = 0.
+    \end{aligned}
+    \right.
+    \label{eq:neweigenvalueproblem}$$ note that we eliminate terms with
+$\mu$ in the condition at $\hat{z} = D$, as
+$\mu = 0\text{ when } \hat{z}\geq D$.
+
+We can write the interface condition into matrix form, denote
+
+$$\begin{aligned}
+T_{1^-} &= 
+\begin{bmatrix}
+    w & 0 \\
+    \frac{1}{\rho_1} w \left( \frac{1}{2} h''(x) - \frac{h'(x)^2}{h(x)} - \frac{1 + h'(x)^2}{h(x)} \mu \right) & -\frac{1}{\rho_1} w \frac{1 + h'(x)^2}{h(x)}
+\end{bmatrix}\Bigg|_{\hat{z}=1^-}
+\\
+T_{1^+} &= 
+\begin{bmatrix}
+    w & 0 \\
+    \frac{1}{\rho_2} w \left( \frac{1}{2} h''(x) + \frac{h'(x)^2}{D - h(x)} - \frac{D - 1}{D - h(x)} \left( 1 + h'(x)^2 \right) \mu \right) & - \frac{1}{\rho_2} w \frac{D - 1}{D - h(x)} \left( 1 + h'(x)^2 \right)
+\end{bmatrix}\Bigg|_{\hat{z}=1^-} 
+\\
+\end{aligned}$$ Then, the interface condition at $\hat{z} = 1$ can be
+expressed as $$T_{1^-}
+\begin{bmatrix}
+    \hat{\phi} \\
+    \hat{\phi}'
+\end{bmatrix}
+\Bigg|_{\hat{z}=1^-} 
+=
+T_{1^+}
+\begin{bmatrix}
+    \hat{\phi} \\
+    \hat{\phi}'
+\end{bmatrix}
+\Bigg|_{\hat{z}=1^+}
+\label{eq:firstinterfacecondition}$$ similarly, for the second interface
+at $\hat{z}= D$, denote $$\begin{aligned}    
+T_{D^-} &=
+\begin{bmatrix}
+    w & 0 \\
+    0 & \frac{(D-1) w}{D - h(x)}
+\end{bmatrix}
+\Bigg|_{\hat{z}=D^-},
+T_{D^+} &=
+\begin{bmatrix}
+    w & 0 \\
+    0 & w
+\end{bmatrix}
+\Bigg|_{\bar{z}=D^+}
+\end{aligned}
+\label{eq:secondinterfacematrix}$$ and the interface condition can be
+expressed as $$T_{D^-}
+\begin{bmatrix}
+    \hat{\phi} \\
+    \hat{\phi}'
+\end{bmatrix}
+\Bigg|_{\hat{z}=D^-} 
+=
+T_{D^+}
+\begin{bmatrix}
+    \hat{\phi} \\
+    \hat{\phi}'
+\end{bmatrix}
+\Bigg|_{\hat{z}=D^+}
+\label{eq:secondinterfacecondition}$$
+
+# dispersion relation Approximation
+
+In the first and second layers $\hat{z} \in (0, 1), (1, D_1)$, where
+there is no PML coordinate stretching, $\hat{z} = \bar{z}$, so we can
+use variable $\hat{z}$ instead in eigenvalue equation
+([\[eq:modified_eigenvalueproblem\]](#eq:modified_eigenvalueproblem){reference-type="ref"
+reference="eq:modified_eigenvalueproblem"}). Rearrange it then we get:
+$$\begin{aligned}
+&\hat{\phi}_{\hat{z}\hat{z}}(\hat{z}) + \frac{p(\hat{z}) - \lambda}{\alpha(\hat{z})} \hat{\phi}(\hat{z}) = 0.\nonumber\\
+ &\text{denote it as  }   
+\hat{\phi}_{\hat{z}\hat{z}}(\hat{z}) + K(\hat{z}) \hat{\phi}(\hat{z}) = 0.
+\label{eq:eigenvalueeqn}
+\end{aligned}$$ The function $K(\hat{z})$ can be approximated by a piece
+wise polynomial of degree two.
+
+We divide the interval $[0, 1]$ into $m_1$ sub intervals
+$[(j-1)l_1,jl_1],\quad (j = 1,2,\ldots,m_1)$ , and interval $[1,D]$ into
+$m_2$ sub intervals,
+$[1+(j-m_1-1)l_2,1+(j-m_1)l_2], \quad(j = m_1+1, m_1+2, ..., m_1+m_2)$
+The sub intervals are denoted in order by
+$I_j = (\hat{z}_{j-1},\hat{z}_j)$ $$\hat{z}_j = 
+ \begin{cases}
+ jl_1, & \text{if } 1 \leq j \leq m_1, \\
+1 + (j-m_1)l_2, & \text{if } m_1 + 1 \leq j \leq m_1 + m_2.
+\end{cases}$$ On each subinterval, the function $K(\hat{z})$ can be
+interpolated by a polynomial of degree two with three nodes chosen to be
+the two endpoints and a midpoint. By approximating $K(\hat{z})$,
+([\[eq:eigenvalueeqn\]](#eq:eigenvalueeqn){reference-type="ref"
+reference="eq:eigenvalueeqn"}) is now approximated by
+
+$$\frac{d^2 y_j}{d\hat{z}^2} + (a_j \hat{z}^2 + b_j \hat{z} + c_j)y_j = 0,\quad \hat{z} \in I_j
+ \label{eq:approxieqn}$$
+
+where $y_j$ is the approximation of the $\hat{\phi}$ on the interval
+$I_j$ and the $a,b,c$ are:
+
+In the first layer: $$\left\{
+\begin{aligned}
+a_j &= \frac{2 K(t_0)}{l_1^2} - \frac{4 K(t_1)}{l_1^2} + \frac{2 K(t_2)}{l_1^2}, \\
+b_j &= \frac{(1 - 4 j) K(t_0)}{l_1} + \frac{(8 j - 4) K(t_1)}{l_1} + \frac{(3 - 4 j) K(t_2)}{l_1}, \\
+c_j &= \left(2 j^2 - j\right) K(t_0) + \left(4 j - 4 j^2\right) K(t_1) + \left(2 j^2 - 3 j + 1\right) K(t_2)\\
+t_0 &= l_1(j-1), \quad t_1 = (j-1/2)l_1, \quad t_2 = jl_1 \\
+j &= 1,2,\ldots,m_1 
+\end{aligned}
+\right.    
+\label{eq:interp_layer1}$$
+
+In the second layer:
+
+$$\left\{
+\begin{aligned}
+a_j &= \frac{2 K(t_0)}{l_2^2} - \frac{4 K(t_1)}{l_2^2} + \frac{2 K(t_2)}{l_2^2} \\
+b_j &= \frac{K(t_0) (-4 l_2 j + 4 l_2 m_1 + l_2 - 4)}{l_2^2} \\
+&\quad + \frac{K(t_1) (l_2 (8 j - 8 m_1 - 4) + 8)}{l_2^2} \\
+&\quad + \frac{K(t_2) (l_2 (-4 j + 4 m_1 + 3) - 4)}{l_2^2}, \\
+c_j &= \frac{K(t_0) \left( l_2^2 \left(2 j^2 - 4 j m_1 - j + 2 m_1^2 + m_1\right) + l_2 (4 j - 4 m_1 - 1) + 2 \right)}{l_2^2} \\
+&\quad + \frac{4 K(t_1) (-l_2 (j - m_1 - 1) - 1) (l_2 (j - m_1) + 1)}{l_2^2} \\
+&\quad + \frac{K(t_2) (-l_2 (j - m_1 - 1) - 1) (-2 l_2 j + 2 l_2 m_1 + l_2 - 2)}{l_2^2}, \\ 
+t_0 &= 1+ (j-m_1-1)l_2, \quad t_1 = 1+ (j-m_1-1/2)l_2, \quad t_2 = 1+(j-m_1)l_2\\
+  j &= m_1 + 1, m_1 + 1, \ldots, m_2 + m_1
+\end{aligned}
+\right.
+\label{eq:interp_layer2}$$
+
+The solution of
+([\[eq:approxieqn\]](#eq:approxieqn){reference-type="ref"
+reference="eq:approxieqn"}) at each interval is given by confluent
+hypergeometric functions. Let { $u_j(\hat{z}), v_j(\hat{z})$ } be a
+fundamental pair on the jth interval, then $$\begin{aligned}
+&y_j(\hat{z}) = A_j u_j(\hat{z}) + B_j v_j(\hat{z}),\quad \hat{z} \in I_j \nonumber\\
+&j = 1,2,\ldots m_1+m_2.
+\end{aligned}$$
+
+In the third layer $\hat{z} \in [D, D_1]$, the eigenvalue
+equation([\[eq:modified_eigenvalueproblem\]](#eq:modified_eigenvalueproblem){reference-type="ref"
+reference="eq:modified_eigenvalueproblem"}) is simplified to
+$$\alpha^{(3)} \hat{\phi}_{\bar{z}\bar{z}} + \eta^{(3)} \hat{\phi} = \lambda \hat{\phi}
+    \label{eq:thirdlayerequation}$$ as $\alpha^{(3)}, \eta^{(3)}$ are
+constants and $\beta^{(3)} = 0$.
+Denote$\gamma^{(3)} =\sqrt{\frac{\eta^{(3)}-\lambda}{\alpha^{(3)}}}$,
+and the solution of
+([\[eq:thirdlayerequation\]](#eq:thirdlayerequation){reference-type="ref"
+reference="eq:thirdlayerequation"}) is simply
+$$\hat{\phi}(\hat{z}) = C_1 e^{-i \gamma^{(3)}\bar{z}} + C_2 e^{i \gamma^{(3)} \bar{z}} \quad
+\hat{z} \in [D, D_1]
+\label{eq:lastlayersol}$$
+
+To make the notation consistent, we can also denote
+([\[eq:lastlayersol\]](#eq:lastlayersol){reference-type="ref"
+reference="eq:lastlayersol"}) as
+$$y_{m_1+m_2+1}(\hat{z}) = A_{m_1+m_2+1} u_{m_1+m_2+1}(\hat{z}) + B_{m_1+m_2+1} v_{m_1+m_2+1}(\hat{z})$$
+notice we also use variable
+$\hat{z}, \text{ instead of }\bar{z} \text{, in }u_{m_1+m_2+1}, v_{m_1+m_2+1}$.
+
+In the first sub interval, The zero boundary condition
+$\hat{\phi}(0) = 0$ gives the first relation:
+$$A_1 u_1(0) + B_1 v_1(0)  = 0$$ Suppose the approximation of
+$\hat{\phi}$ in each layer is continuous and has continuous first-order
+derivative. This requires that at the interface $\hat{z}_j$:
+$$\begin{bmatrix}
+    u_{j+1}(\hat{z}_j) & v_{j+1}(\hat{z}_j) \\
+    u'_{j+1}(\hat{z}_j) & v'_{j+1}(\hat{z}_j)
+\end{bmatrix}
+\begin{bmatrix}
+    A_{j+1}\\
+    B_{j+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    u_j(\hat{z}_j) & v_j(\hat{z}_j) \\
+    u'_j(\hat{z}_j) & v'_j(\hat{z}_j)
+\end{bmatrix}
+\begin{bmatrix}
+    A_j\\
+    B_j
+\end{bmatrix}
+\label{eq:normalABiter}$$
+
+Moreover,from
+([\[eq:firstinterfacecondition\]](#eq:firstinterfacecondition){reference-type="ref"
+reference="eq:firstinterfacecondition"}).We have a relation at the
+interface $\hat{z} = 1$. Denote $$T = T_{1^+}^{-1}T_{1^-},\quad
+T = 
+\begin{bmatrix}
+    t_{11} & 0 \\
+    t_{21} & t_{22}
+\end{bmatrix}
+\label{eq:Tdefine}$$ then $$\begin{bmatrix}
+    u_{m_1+1}(1) & v_{m_1+1}(1) \\
+    u'_{m_1+1}(1) & v'_{m_1+1}(1)
+\end{bmatrix}
+\begin{bmatrix}
+    A_{m_1+1}\\
+    B_{m_1+1}
+\end{bmatrix}
+= T
+\begin{bmatrix}
+    u_{m_1}(1) & v_{m_1}(1) \\
+    u'_{m_1}(1) & v'_{m_1}(1)
+\end{bmatrix}
+\begin{bmatrix}
+    A_{m_1}\\
+    B_{m_1}
+\end{bmatrix}
+\label{eq:firstinterfaceABiter}$$
+
+Similarly, from
+([\[eq:secondinterfacecondition\]](#eq:secondinterfacecondition){reference-type="ref"
+reference="eq:secondinterfacecondition"}) denote
+$$\overline{T} = T_{D^+}^{-1}T_{D^-},\quad
+\overline{T} = 
+\begin{bmatrix}
+    \bar{t}_{11} & 0 \\
+    0 & \bar{t}_{22}
+\end{bmatrix}
+\label{eq:Tbardefine}$$
+
+then $$\begin{bmatrix}
+    u_{m_1+m_2+1}(D) & v_{m_1+m_2+1}(D) \\
+    u_{m_1+m_2+1}'(D)& v_{m_1+m_2+1}'(D)
+\end{bmatrix}
+\begin{bmatrix}
+    A_{m_1+m_2+1}\\
+    B_{m_1+m_2+1}
+\end{bmatrix}
+=
+\overline{T}
+\begin{bmatrix}
+    u_{m_1 + m_2}(D) & v_{m_1 + m_2}(D) \\
+    u'_{m_1 + m_2}(D) & v'_{m_1 + m_2}(D)
+\end{bmatrix}
+\begin{bmatrix}
+    A_{m_1 + m_2}\\
+    B_{m_1 + m_2}
+\end{bmatrix}
+\label{eq:secondinterfaceABiter}$$ The zero boundary condition at $D_1$
+in
+([\[eq:modified_eigenvalueproblem\]](#eq:modified_eigenvalueproblem){reference-type="ref"
+reference="eq:modified_eigenvalueproblem"}) implies $$\begin{aligned}
+    &0 = A_{m_1 + m_2 + 1} e^{-i \gamma^{(3)}\bar{D_1}} + B_{m_1 + m_2 + 1} e^{i \gamma^{(3)} \bar{D_1}} \label{eq:D1ABiter} \\ 
+    &\text{where }\bar{D_1} = D_1 + i \int_0^{D_1} \sigma(s)ds\nonumber 
+\end{aligned}$$ We can obtain a linear system of $A_j, B_j$. by putting
+together ([\[eq:normalABiter\]](#eq:normalABiter){reference-type="ref"
+reference="eq:normalABiter"})([\[eq:firstinterfaceABiter\]](#eq:firstinterfaceABiter){reference-type="ref"
+reference="eq:firstinterfaceABiter"})([\[eq:secondinterfaceABiter\]](#eq:secondinterfaceABiter){reference-type="ref"
+reference="eq:secondinterfaceABiter"})([\[eq:D1ABiter\]](#eq:D1ABiter){reference-type="ref"
+reference="eq:D1ABiter"}) $$\left\{
+\begin{aligned}
+    & A_1 u_1(0) + B_1 v_1(0)  = 0 \\
+    \\
+     &u_{j+1}(\hat{z_j}) A_{j+1} + v_{j+1}(\hat{z_j}) B_{j+1} = u_j(\hat{z_j}) A_j + v_j(\hat{z_j}) B_j, \\
+    &u'_{j+1}(\hat{z_j}) A_{j+1} + v'_{j+1}(\hat{z_j}) B_{j+1} = u'_j(\hat{z_j}) A_j + v'_j(\hat{z_j}) B_j.\\
+    & j = 1, \dots, m_1-1 \quad \text{and} \quad j = m_1+1, \dots, m_1+m_2-1, \\
+    \\
+    & u_{m_1+1}(1) A_{m_1+1} + v_{m_1+1}(1) B_{m_1+1} =T_{11} \left[ u_{m_1}(1) A_{m_1} + v_{m_1}(1) B_{m_1+1} \right], \\
+    & u_{m_1+1}'(1) A_{m_1+1} + v_{m_1+1}'(1) B_{m_1+1} =
+\\
+    & \left[T_{21} u_{m_1}(1) + T_{22} u_{m_1}'(1)\right] A_{m_1} + \left[T_{21}v_{m_1}(1)+T_{22} v_{m_1}'(1)\right] B_{m_1}, \\
+    \\
+    &u_{m_1+m_2+1}(D) A_{m_1+m_2+1} + v_{m_1+m_2+1}(D) B_{m_1+m_2+1} = \\
+    &\overline{T}_{11}\left[ u_{m_1+m_2}(D) A_{m_1+m_2} + v_{m_1+m_2}(D) B_{m_1+m_2}\right], \\
+    \\
+    &u_{m_1+m_2+1}'(D) A_{m_1+m_2+1} + v_{m_1+m_2+1}(D)'B_{m_1+m_2+1} =\\
+    &\overline{T}_{22}\left[ u_{m_1+m_2}'(D)A_{m_1+m_2} +  v_{m_1+m_2}'(D) B_{m_1+m_2}\right],\\
+    \\
+    & A_{m_1+m_2+1}e^{-i\gamma^{(3)}\bar{D_1}}  +  B_{m_1+m_2+1}e^{i\gamma^{(3)}\bar{D_1}} = 0
+    \end{aligned}
+\right.$$
+
+The above linear system leads to an algebraic equation for $\lambda$, by
+eliminating all the $A_j$ and $B_j$. Denote
+$R_j = \frac{A_j}{B_j}, (j = 1,2,\ldots, m_1 +m_2 +1)$. We can derive
+the dispersion relation of $\lambda$
+
+$$\begin{aligned}
+&R_1 = -\frac{v_1(0)}{u_1(0)} \label{eq:R1value}\\
+&R_{j+1} = 
+\frac{
+R_j \left( u'_j(\hat{z}_j) v_{j+1}(\hat{z}_j) - u_j(\hat{z}_j) v'_{j+1}(\hat{z}_j) \right) 
+- v_j(\hat{z}_j) v'_{j+1}(\hat{z}_j) + v_{j+1}(\hat{z}_j) v'_j(\hat{z}_j)
+}{
+R_j \left( u'_{j+1}(\hat{z}_j) u_j(\hat{z}_j) - u'_j(\hat{z}_j) u_{j+1}(\hat{z}_j) \right) 
++ u'_{j+1}(\hat{z}_j) v_j(\hat{z}_j) - u_{j+1}(\hat{z}_j) v'_j(\hat{z}_j)
+}, \nonumber \\
+& \quad j = 1, \dots, m_1-1 \quad \text{and} \quad j = m_1+1, \dots, m_1+m_2-1, \label{eq:normalRteration} \\
+\nonumber \\
+&R_{m_1+1} = \nonumber \\
+&\Big{\{}
+R_{m_1} \left[ u'_{m_1}(1) v_{m_1+1}(1) T_{22} + u_{m_1}(1) v_{m_1+1}(1) T_{21} - u_{m_1}(1) v'_{m_1+1}(1) T_{11} \right]  + \nonumber \ldots\\
+& v_{m_1}(1) v_{m_1+1}(1) T_{21} 
+- v_{m_1}(1) v'_{m_1+1}(1) T_{11} 
++ v_{m_1+1}(1) v'_{m_1}(1) T_{22}\Big{\}} 
+\Big{/} \nonumber\\
+ &\Big{\{} R_{m_1} \left[ u'_{m_1+1}(1) u_{m_1}(1) T_{11} 
+- u'_{m_1}(1) u_{m_1+1}(1) T_{22} 
+- u_{m_1}(1) u_{m_1+1}(1) T_{21} \right]  + \ldots \nonumber\\
+&u'_{m_1+1}(1) v_{m_1}(1) T_{11} 
+- u_{m_1+1}(1) v_{m_1}(1) T_{21} 
+- u_{m_1+1}(1) v'_{m_1}(1) T_{22}
+\Big{\}}\label{eq:firstintervalRinter}
+\\
+\nonumber \\
+&R_{m_1+m_2+1} = \nonumber\\ 
+&\Big{\{}
+    R_{m_1+m_2} \left[\overline{T}_{22} \, v_{m_1+m_2 +1}(D) \, u_{m_1+m_2}'(D) - \overline{T}_{11} \, u_{m_1+m_2}(D) \, v_{m_1+m_2 + 1}'(D)\right] -\ldots \nonumber\\
+    &\overline{T}_{11} \, v_{m_1+m_2}(D) \, v_{m_1+m_2 +1}'(D) + \overline{T}_{22} \, v_{m_1+m_2 +1}(D) \, v_{m_1+m_2}'(D)
+\Big{\}} \Big{/} \nonumber \\
+&\Big{\{}R_{m_1+m_2} \left[\overline{T}_{11} \, u_{m_1+m_2}(D) \, u_{m_1+m_2+1}'(D) - \overline{T}_{22} \, u_{m_1+m_2+1}(D) \, u_{m_1+m_2}'(D)\right]+\ldots \nonumber\\
+&\overline{T}_{11} \, v_{m_1+m_2}(D) \, u_{m_1+m_2+1}'(D) - \overline{T}_{22} \, u_{m_1+m_2+1}(D) \, v_{m_1+m_2}'(D)
+\Big{\}}\label{eq:secondinterfaceRinter}
+\\
+\nonumber \\
+&R_{m_1 + m_2 +1} = -e^{2i\gamma^{(3)}\bar{D_1}}
+\label{eq:boundaryR}
+\end{aligned}$$ $\lambda$ involved in each $u_j, v_j$. So
+$R_{m_1 + m_2+1}$ is determined by $\lambda$ recursively through
+([\[eq:R1value\]](#eq:R1value){reference-type="ref"
+reference="eq:R1value"})([\[eq:normalRteration\]](#eq:normalRteration){reference-type="ref"
+reference="eq:normalRteration"})([\[eq:firstintervalRinter\]](#eq:firstintervalRinter){reference-type="ref"
+reference="eq:firstintervalRinter"})([\[eq:secondinterfaceRinter\]](#eq:secondinterfaceRinter){reference-type="ref"
+reference="eq:secondinterfaceRinter"}). On the other hand,
+$R_{m_1 + m_2 +1}$ is determined by $\lambda$ in
+([\[eq:boundaryR\]](#eq:boundaryR){reference-type="ref"
+reference="eq:boundaryR"}). Therefore, the dispersion relation has the
+form $$g(\lambda) = R_{m_1 + m_2 +1} + e^{2i\gamma^{(3)}\bar{D_1}} =0
+    \label{eq:despersionrelation}$$
+
+# special case
+
+when the wave guide interface is flat, with $h(x) \equiv 1$, the
+orthogonal coordinate transformation will be reduced to an identity
+mapping, namely $(\hat{x}, \hat{z}) = (x,z)$. And the equation transform
+([\[eq:Vtransform\]](#eq:Vtransform){reference-type="ref"
+reference="eq:Vtransform"}) will be an identity transformation, as
+$w\equiv 1$. Therefore, in the transformed Helmholtz
+equation([\[eq:transformedhelmholtz\]](#eq:transformedhelmholtz){reference-type="ref"
+reference="eq:transformedhelmholtz"}),
+$\alpha = 1, \beta = 0,\eta = \kappa^2$ And the eigenvalue problem
+([\[eq:orieigenvalueproblem\]](#eq:orieigenvalueproblem){reference-type="ref"
+reference="eq:orieigenvalueproblem"}) will be reduced to $$\left\{
+\begin{aligned}
+    &{\phi}_{\bar{z}\bar{z}} + \kappa(z)^2\phi = \lambda {\phi}\\
+    & \phi |_{z= 1^-}  = \phi |_{z= 1^+}\\
+    &\frac{1}{\rho_1}{\phi}_{\bar{z}} |_{z= 1^-} = \frac{1}
+    {\rho_2}{\phi}_{\bar{z}} |_{z= 1^+}\\
+    & \phi |_{z= D^-}  = \phi |_{z= D^+}\\
+    & \phi_{\bar{z}} |_{z= D^-}  = \phi_{\bar{z}} |_{z= D^+}\\ 
+    &{\phi}|_{z =0} = 0 \\
+    &{\phi}|_{z = D_1}=0
+\end{aligned}
+\right.
+\label{eq:reducedeigenvalue}$$
+
+Given that $\beta = 0$, from the definition of $\hat{\phi}$
+([\[eq:Vtransform\]](#eq:Vtransform){reference-type="ref"
+reference="eq:Vtransform"}) we have $\hat{\phi} = \phi$. so $\hat{\phi}$
+should also satisfy the reduced eigenvalue
+problem([\[eq:reducedeigenvalue\]](#eq:reducedeigenvalue){reference-type="ref"
+reference="eq:reducedeigenvalue"}).
+
+Denote
+$$\gamma^{(1)} = \sqrt{\kappa_1^2-\lambda}, \quad \gamma^{(2)} = \sqrt{\kappa_2^2-\lambda}$$the
+2 basis solution $\{u_i, v_j\}$ in each sub interval in the first 2
+layer $[0,1], [1,D_1]$are simply
+$$u_j =e^{-i \gamma^{(\ell)}z}, \quad v_j = e^{i \gamma^{(\ell)}z}
+    \quad z \in I_j
+    \label{eq:simplifiedbasisinfsmall}$$ $$\gamma^{(\ell)} = 
+\begin{cases}
+\gamma^{(1)} & \text{if } j\leq m_1 \\
+\gamma^{(2)} & \text{if } j >m_1
+\end{cases}
+   \quad j = 1,2,\ldots m_1 + m_2$$ The basis solutions within one layer
+are continuous at each node $\hat{z}_j$ naturally: $$\begin{aligned}
+&u_j'(z_j) = u_{j+1}'(z_j),\quad u_j(z_j) = u_{j+1}(z_j) \nonumber\\
+&v_j'(z_j) = v_{j+1}'(z_j),\quad v_j(z_j) = v_{j+1}(z_j) \nonumber\\
+& j = 1,\ldots,m_1 -1 \text{ and } j= m_1 + 1, \ldots, m_1 + m_2-1\nonumber
+\end{aligned}$$ Thus, the iterative relation of $R_j$ within a
+layer([\[eq:normalRteration\]](#eq:normalRteration){reference-type="ref"
+reference="eq:normalRteration"}) simply becomes $$\begin{aligned}
+&R_{j+1} = R_j \nonumber\\
+&j = 1,\ldots,m_1 -1 \text{ and } j= m_1 + 1, \ldots, m_1 + m_2-1
+\label{eq:simplifiedRiter}
+\end{aligned}$$ The zero boundary condition $\hat{\phi}(0) = 0$ give
+rise to $R_1 = \frac{A_1}{B_1} = -1$ Therefore, in the first
+layer,$R_j \equiv -1, \quad j = 1,2,\ldots,m_1$
+
+From the simplified interface condition
+([\[eq:reducedeigenvalue\]](#eq:reducedeigenvalue){reference-type="ref"
+reference="eq:reducedeigenvalue"}), Interface condition matrices become
+$$\begin{aligned}
+T_{1^-} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & \frac{1}{\rho_1}
+\end{bmatrix},
+\quad
+T_{1^+} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & \frac{1}{\rho_2}
+\end{bmatrix} 
+\\
+\end{aligned}$$ $T_{D^-}$ and$T_{D^+}$ all reduced to identity matrix.
+Thus, $$T = T_{1^+}^{-1}T_{1^-} = 
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & \frac{\rho_2}{\rho_1}
+\end{bmatrix},\quad
+    \overline{T} = T_{D^+}^{-1}T_{D^-} = 
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+\end{bmatrix}$$ The relation to transfer from the first layer to the
+second
+layer([\[eq:firstintervalRinter\]](#eq:firstintervalRinter){reference-type="ref"
+reference="eq:firstintervalRinter"}) becomes $$\begin{aligned}
+&R_{m_1+1} = \nonumber \\
+&\Bigg\{
+-\left[\frac{\rho_2}{\rho_1} u'_{m_1}(1) v_{m_1+1}(1)  - u_{m_1}(1) v'_{m_1+1}(1) \right]  - v_{m_1}(1) v'_{m_1+1}(1) 
++ v_{m_1+1}(1) v'_{m_1}(1)\frac{\rho_2}{\rho_1}
+\Bigg\}
+\Bigg/ \nonumber\\
+&\Bigg\{
+-\left[ u'_{m_1+1}(1) u_{m_1}(1)  
+- \frac{\rho_2}{\rho_1}u'_{m_1}(1) u_{m_1+1}(1) 
+\right]  + u'_{m_1+1}(1) v_{m_1}(1) 
+- \frac{\rho_2}{\rho_1}u_{m_1+1}(1) v'_{m_1}(1)
+\Bigg\} \nonumber
+\end{aligned}$$ plug in the exact expression for $u, v$ in
+([\[eq:simplifiedbasisinfsmall\]](#eq:simplifiedbasisinfsmall){reference-type="ref"
+reference="eq:simplifiedbasisinfsmall"}): $$R_{m_1+1} =\frac{ 
+e^{i \gamma_2}\Big{\{}
+-e^{-i\gamma_1}\left[-i\gamma_1\frac{\rho_2}{\rho_1}-i\gamma_2  \right]  + e^{i \gamma_1}\left[ -i \gamma_2 + i\gamma_1\frac{\rho_2}{\rho_1}\right] \Big{\}} 
+}{
+ e^{-i\gamma_2}\Big{\{} - e^{-i \gamma_1}\left[ -i\gamma_2 + i\gamma_1\frac{\rho_2}{\rho_1} 
+ \right]  + e^{i \gamma_1}\left[-i \gamma_2- i \gamma_1\frac{\rho_2}{\rho_1}\right]
+\Big{\}}}\nonumber$$ simplify it $$R_{m_1+1} =-e^{2i \gamma_2}\frac{ 
+e^{-i\gamma_1}\left[\gamma_1\frac{\rho_2}{\rho_1}+\gamma_2  \right]  + e^{i\gamma_1}\left[ - \gamma_2 + \gamma_1\frac{\rho_2}{\rho_1}\right] 
+}{
+ e^{-i \gamma_1}\left[ -\gamma_2 + \gamma_1\frac{\rho_2}{\rho_1} 
+ \right]  + e^{i \gamma_1}\left[ \gamma_2+ \gamma_1\frac{\rho_2}{\rho_1}\right]}\label{eq:simplifiedRtransferfirstlayer}$$
+
+As the second interface does not exist, the transfer relation from
+second to the third layer
+([\[eq:secondinterfaceRinter\]](#eq:secondinterfaceRinter){reference-type="ref"
+reference="eq:secondinterfaceRinter"}) is reduced to
+$R_{m_1 + m_2 +1} = R_{m_1 + m_2}$ What's
+more,$R_j\equiv \text{Constant} j= m_1+1 \ldots m_1+m_2$, so we have
+$$R_{m_1 + m_2 +1} =R_{m_1 + m_2}= R_{m_1+1} = \text{ the right hand side of(\ref{eq:simplifiedRtransferfirstlayer})}$$
+In this case, $\gamma^{(3)} = \gamma^{(2)}$. so we substitute
+$\gamma^{(3)} \text{ with } \gamma^{(2)}$. The dispersion relation we
+derived
+([\[eq:despersionrelation\]](#eq:despersionrelation){reference-type="ref"
+reference="eq:despersionrelation"}) is reduced to
+$$-e^{2i \gamma^{(2)}}\frac{ 
+e^{-i\gamma^{(1)}}\left[\gamma^{(1)}\frac{\rho_2}{\rho_1}+\gamma^{(2)}  \right]  + e^{i\gamma^{(1)}}\left[ - \gamma^{(2)} + \gamma^{(1)}\frac{\rho_2}{\rho_1}\right] 
+}{
+ e^{-i \gamma^{(1)}}\left[ -\gamma^{(2)} + \gamma^{(1)}\frac{\rho_2}{\rho_1} 
+ \right]  + e^{i \gamma^{(1)}}\left[ \gamma^{(2)}+ \gamma^{(1)}\frac{\rho_2}{\rho_1}\right]}+ e^{2i \gamma^{(2)} \bar{D_1}} = 0$$
+rearrange it, and expand $e^{i \gamma^{(1)}}, e^{-i \gamma^{(1)}}$ into
+trigonometric function, we have $$\frac{ 
+i\gamma^{(1)}\frac{\rho_2}{\rho_1}cos(\gamma^{(1)})-i\gamma^{(2)} sin(\gamma^{(1)})}{
+   i\gamma^{(2)} sin(\gamma^{(1)}) + \gamma^{(1)}\frac{\rho_2}{\rho_1} 
+ cos(\gamma^{(1)})} = e^{2i \gamma^{(2)} (\bar{D_1}-1)}$$ multiply both
+the numerator and denominator of the left hand side by $i$, it will
+become the same as the dispersion relation in[@othogonaleigenfunction],
+this result theoretically verified new
+relation([\[eq:despersionrelation\]](#eq:despersionrelation){reference-type="ref"
+reference="eq:despersionrelation"}) we derived.
+
+# Asymptotic solution
+
+First, we use a piece wise constant function to approximate $K(\hat{z})$
+in each interpolate sub interval.
+$$\hat{\phi}_{\hat{z}\hat{z}} +K(t_1)\phi = 0
+    \quad \hat{z} \in I_j$$ $K(t_1)$ is defined in
+([\[eq:interp_layer1\]](#eq:interp_layer1){reference-type="ref"
+reference="eq:interp_layer1"})([\[eq:interp_layer2\]](#eq:interp_layer2){reference-type="ref"
+reference="eq:interp_layer2"}) Under this simplification, the basis
+solution at each interval becomes:
+$$u_j =e^{-i \gamma_jz}, \quad v_j = e^{i \gamma_jz}
+    \quad z \in I_j
+    \label{eq:simplifiedbasis}$$
+$$\gamma_j = \sqrt{\frac{p(t_1 )-\lambda}{\alpha(t_1)}}$$ The continuous
+condition within a layer becomes： $$\left\{
+\begin{aligned}
+    & A_{j+1} e^{-i \gamma_{j+1} \hat{z_j}} + B_{j+1} e^{i \gamma_{j+1}\hat{z_j}}  =  A_{j+1} e^{-i \gamma_{j+1}\hat{z_j}} + B_{j+1} e^{i \gamma_{j+1}\hat{z_j}}\\
+     & - i \gamma_{j+1} A_{j+1} e^{-i \gamma_{j+1}\hat{z}_j} + i \gamma_{j+1} B_{j+1} e^{i \gamma_{j+1}\hat{z}_j}  =  -i \gamma_{j+1} A_{j+1} e^{-i \gamma_{j+1}\hat{z}_j} + B_{j+1} e^{i \gamma_{j+1}\hat{z}_j}\\
+    & j = 1, \dots, m_1-1 \quad \text{and} \quad j = m_1+1, \dots, m_1+m_2-1, \\
+\end{aligned}
+\right.$$ We can write it as a matrix form, which gives an iteration
+relation of $A_j, B_j$. $$\begin{bmatrix}
+    A_{j+1}\\
+    B_{j+1}
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+ \frac{e^{-i (\gamma_j-\gamma_{j+1})} (\gamma_j+\gamma_{j+1})}{2 \gamma_{j+1}} & \frac{e^{i (\gamma_j+\gamma_{j+1})} (\gamma_{j+1}-\gamma_j)}{2 \gamma_{j+1}} \\
+ \frac{e^{-i (\gamma_j+\gamma_{j+1})} (\gamma_{j+1}-\gamma_j)}{2 \gamma_{j+1}} & \frac{e^{i (\gamma_j-\gamma_{j+1})} (\gamma_j+\gamma_{j+1})}{2 \gamma_{j+1}}
+\end{bmatrix}
+    \begin{bmatrix}
+    A_{j}\\
+    B_{j}
+    \end{bmatrix}$$ denote $\hat{z}_{j+1} = \hat{z}_j + \Delta z$
+$$\frac{
+    \begin{bmatrix}
+    A_{j+1}\\
+    B_{j+1}
+    \end{bmatrix}-
+    \begin{bmatrix}
+    A_{j}\\
+    B_{j}
+    \end{bmatrix}}{\Delta z}
+    =
+    \frac{
+    \begin{bmatrix}
+ \frac{e^{-i (\gamma_j-\gamma_{j+1})} (\gamma_j+\gamma_{j+1}) - 2 \gamma_{j+1}}{2 \gamma_{j+1}} & \frac{e^{i (\gamma_j+\gamma_{j+1})} (\gamma_{j+1}-\gamma_j)}{2 \gamma_{j+1}} \\
+ \frac{e^{-i (\gamma_j+\gamma_{j+1})} (\gamma_{j+1}-\gamma_j)}{2 \gamma_{j+1}} & \frac{e^{i (\gamma_j-\gamma_{j+1})} (\gamma_j+\gamma_{j+1}) -2 \gamma_{j+1}}{2 \gamma_{j+1}}
+ \end{bmatrix}
+ }{\Delta z}
+    \begin{bmatrix}
+    A_{j}\\
+    B_{j}
+    \end{bmatrix}
+    \label{eq:differenceAB}$$ When $\Delta z$ approaches 0，the limit of
+([\[eq:differenceAB\]](#eq:differenceAB){reference-type="ref"
+reference="eq:differenceAB"}) is: $$\frac{d}
+    {d \hat{z}}
+     \begin{bmatrix} 
+    A\\
+    B
+    \end{bmatrix}
+    =
+    \frac{\gamma'}{2 \gamma}
+    \begin{bmatrix}
+    -1 + 2 i \gamma \hat{z} & e^{2 i \gamma\hat{z}} \\
+    e^{-2 i \gamma\hat{z}} & -1 - 2 i \gamma\hat{z} \\
+ \end{bmatrix}
+    \begin{bmatrix}
+    A\\
+    B
+    \end{bmatrix}
+    \quad \hat{z} \neq 1,D
+    \label{eq:ABODE}$$ Here, we assume
+$p(\hat{z}) \text{ and } \alpha(\hat{z})$ have first order derivative,
+thus $\gamma'$ exist.
+
+If $p(\hat{z}) \text{ and } \alpha(\hat{z})$ varies gradually (when the
+interface $h(x)$ varies gradually), and$| \lambda |$is large，we have
+$\big{|} \frac{\gamma'}{\gamma} \big{|} \approx 0$.
+([\[eq:ABODE\]](#eq:ABODE){reference-type="ref" reference="eq:ABODE"})
+can be approximated as $$\frac{d}
+    {d \hat{z}}
+     \begin{bmatrix} 
+    A\\
+    B
+    \end{bmatrix}
+    \approx
+    \begin{bmatrix}
+    i \gamma' \hat{z} & 0 \\
+    0 &  -  i \gamma' \hat{z} \\
+ \end{bmatrix}
+    \begin{bmatrix}
+    A\\
+    B
+    \end{bmatrix}
+    \label{eq:ABODEsimplified}$$ The solution of
+([\[eq:ABODEsimplified\]](#eq:ABODEsimplified){reference-type="ref"
+reference="eq:ABODEsimplified"}) is: $$\text{denote }
+    U^{(\ell)}=\begin{bmatrix}
+    i \gamma^{(\ell)}\,' \hat{z} & 0 \\
+    0 &  -  i \gamma^{(\ell)}\,' \hat{z} \\
+ \end{bmatrix}$$ $$\begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix} \Bigg{|}_{z = 1^-}
+ \approx e^{ \int_{0}^{1} U^{(1)} \,d\hat{z}}    
+ \begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix}\Bigg{|}_{z = 0},\quad
+\begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix} \Bigg{|}_{z = D^-}
+ \approx e^{ \int_{1}^{D} U^{(2)} \,d\hat{z}}    
+ \begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix}\Bigg{|}_{z = 1^+}
+\label{eq:approxT1}$$ We denote
+$T_{0\rightarrow 1^-} = e^{ \int_{0}^{1} U^{(1)} \,d\hat{z}}$ and
+$T_{1^+\rightarrow D^-} = e^{ \int_{1}^{D} U^{(2)} \,d\hat{z}}$. Since
+$\gamma^{(3)}$ is a constant, the transfer matrix from $D^+ to D_1$ is
+an identity matrix, so we omit it.
+
+The transfer matrices across the interfaces $\hat{z} = 1 \text{ and } D$
+are listed below. We denote
+$\gamma_{11} = \gamma^{(1)}(1), \quad \gamma_{21} = \gamma^{(2)}(1), \quad \gamma_{2D} = \gamma^{(2)}(D)$
+$$\begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix} \Bigg{|}_{z = 1^+}
+ =    T_{1^- \rightarrow 1^+}
+ \begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix}\Bigg{|}_{z = 1^-}
+\quad
+    \begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix} \Bigg{|}_{z = D^+}
+ =    T_{D^- \rightarrow D^+}
+ \begin{bmatrix}   
+     A\\
+    B
+\end{bmatrix}\Bigg{|}_{z = D^-}$$ $$T_{1^- \rightarrow 1^+} = 
+ \begin{bmatrix}
+  \frac{e^{-i (\gamma_{11} - \gamma_{21})} (\gamma_{11} t_{22} + \gamma_{21} t_{11} + i t_{21})}{2 \gamma_{21}} & \frac{e^{i (\gamma_{11} + \gamma_{21})} (-\gamma_{11} t_{22} + \gamma_{21} t_{11} + i t_{21})}{2 \gamma_{21}} \\
+  \frac{e^{-i (\gamma_{11} + \gamma_{21})} (-\gamma_{11} t_{22} + \gamma_{21} t_{11} - i t_{21})}{2 \gamma_{21}} & \frac{e^{i (\gamma_{11} - \gamma_{21})} (\gamma_{11} t_{22} + \gamma_{21} t_{11} - i t_{21})}{2 \gamma_{21}} \\
+ \end{bmatrix}
+ \label{eq:T1mto1p}$$ $$T_{D^- \rightarrow D^+} = 
+ \begin{bmatrix}
+ \frac{e^{-i (\gamma_{2D} - \gamma^{(3)})} (\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} & \frac{e^{i (\gamma_{2D} + \gamma^{(3)})} (-\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} \\
+  \frac{e^{-i (\gamma_{2D} + \gamma^{(3)})} (-\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} & \frac{e^{i (\gamma_{2D} - \gamma^{(3)})} (\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} 
+  \label{eq:TDtransfermat}
+  \end{bmatrix}$$ The $t_{ij} \text{ and } \bar{t}_{ij}$ are defined in
+([\[eq:Tdefine\]](#eq:Tdefine){reference-type="ref"
+reference="eq:Tdefine"})([\[eq:Tbardefine\]](#eq:Tbardefine){reference-type="ref"
+reference="eq:Tbardefine"}). When $|\lambda|$ is
+large，([\[eq:T1mto1p\]](#eq:T1mto1p){reference-type="ref"
+reference="eq:T1mto1p"})can be approximated by:
+$$T_{1^- \rightarrow 1^+} \approx 
+ \begin{bmatrix}
+ \frac{e^{-i (\gamma_{11} - \gamma_{21})} (\gamma_{11} t_{22} + \gamma_{21} t_{11})}{2 \gamma_{21}} & \frac{e^{i (\gamma_{11} + \gamma_{21})} (-\gamma_{11} t_{22} + \gamma_{21} t_{11})}{2 \gamma_{21}} \\
+ \frac{e^{-i (\gamma_{11} + \gamma_{21})} (-\gamma_{11} t_{22} + \gamma_{21} t_{11})}{2 \gamma_{21}} & \frac{e^{i (\gamma_{11} - \gamma_{21})} (\gamma_{11} t_{22} + \gamma_{21} t_{11})}{2 \gamma_{21}} 
+ \end{bmatrix}
+ \label{eq:approx1mto1p}$$ What's more, when the derivatives of the
+interface $h(x)$ are small, we can show that
+$\gamma_{2D} \bar{t}_{22} \approx \gamma^{(3)} \bar{t}_{11}$, the
+analysis is in
+appendix([6](#appendix:proofofDgammaeq){reference-type="ref"
+reference="appendix:proofofDgammaeq"}). Thus,
+([\[eq:TDtransfermat\]](#eq:TDtransfermat){reference-type="ref"
+reference="eq:TDtransfermat"}) can be approximated as
+$$T_{D^- \rightarrow D^+} \approx 
+ \begin{bmatrix}
+ \frac{e^{-i (\gamma_{2D} - \gamma^{(3)})} (\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} & 0\\
+  0& \frac{e^{i (\gamma_{2D} - \gamma^{(3)})} (\gamma_{2D} \bar{t}_{22} + \gamma^{(3)} \bar{t}_{11})}{2 \gamma^{(3)}} 
+  \end{bmatrix}
+  \label{eq:approxTD}$$
+
+From the boundary condition $\hat{\phi}(0) = 0$, we can set
+$A(0) =1, B(0) =-1$, and another boundary condition
+$\hat{\phi}(\bar{D_1}) = 0, \text{ gives } A(D^+)e^{-i \gamma^{(3)} \bar{D_1}} + B(D^+)e^{i \gamma^{(3)}\bar{D_1}} = 0$.
+The dispersion relation is derived: $$\begin{bmatrix}
+     e^{-i \gamma^{(3)}\bar{D_1}},&
+e^{i \gamma^{(3)}\bar{D_1}}
+\end{bmatrix}
+    T_{D^-\rightarrow D^+}T_{1^+\rightarrow D^-}T_{1^-\rightarrow 1^+} T_{0\rightarrow 1^-}
+    \begin{bmatrix}
+        1\\
+        -1
+    \end{bmatrix}=0$$ plug in the approximated transfer
+matrices([\[eq:approxT1\]](#eq:approxT1){reference-type="ref"
+reference="eq:approxT1"})([\[eq:approx1mto1p\]](#eq:approx1mto1p){reference-type="ref"
+reference="eq:approx1mto1p"})([\[eq:approxTD\]](#eq:approxTD){reference-type="ref"
+reference="eq:approxTD"}) and expand, we derived the approximated
+dispersion relation: $$\frac{ 
+ \gamma_{21} t_{11} \left( -1 + e^{2 i \int_0^1 \gamma^{(1)}(z) \, dz} \right) 
+- \gamma_{11} t_{22} \left( 1 + e^{2 i \int_0^1 \gamma^{(1)}(z) \, dz} \right)
+}{
+\gamma_{11} t_{22} \left( 1 + e^{2 i \int_0^1 \gamma^{(1)}(z) \, dz} \right) 
++ \gamma_{21} t_{11} \left( -1 + e^{2 i \int_0^1 \gamma^{(1)}(z) \, dz} \right)
+}  + e^{2 i  (\gamma^{(3)} (\hat{D_1}-D) + \int_1^D \gamma^{(2)}(z)\, dz) } \approx 0
+\label{eq:fulldespersionrelation}$$
+
+## leaky mode
+
+$|e^{2 i \gamma^{(3)}(\bar{D_1}-D)}| \approx 0$, therefore
+([\[eq:fulldespersionrelation\]](#eq:fulldespersionrelation){reference-type="ref"
+reference="eq:fulldespersionrelation"}) is reduced to:
+$$\frac{\gamma_{21} t_{11} + \gamma_{11} t_{22}}{\gamma_{21} t_{11} - \gamma_{11} t_{22}}
+\approx e^{2 i \int_0^1 \gamma^{(1)}(z) \, dz}$$ Taking logarithm both
+sides
+$$\log\left(\frac{\gamma_{21} t_{11} + \gamma_{11} t_{22}}{\gamma_{21} t_{11} - \gamma_{11} t_{22}}\right)+ 2 m \pi i
+\approx 2 i \int_0^1 \gamma^{(1)}(z) \, dz, \quad
+m \in \mathbb{Z}
+\label{eq:leakylog}$$ assumes
+$\int_0^1 \gamma^{(1)}(z) \, dz = \gamma^{(1)}(\hat{z}^{(1)}_*)$ (in
+practice, $\hat{z}^{(1)}_*$ can be obtained by setting $\lambda = 0$,
+and searching for $\hat{z}^{(1)}_*$ that minimizes
+$\left| \int_0^1 \sqrt{\frac{p^{(1)}(z)}{\alpha^{(1)}(z)}} \, dz - \sqrt{\frac{p^{(1)}(\hat{z})}{\alpha^{(1)}(\hat{z})}} \right|$).
+We denote $\gamma_{1*} = \gamma^{(1)}(\hat{z}^{(1)}_*)$
+
+To represent $\gamma_{21},\gamma_{11}$ in terms of $\gamma_{1*}$, we
+denote $$\begin{aligned}
+&\sigma_{21} = \sqrt{\frac{\alpha^{(1)}(\hat{z}^{(1)}_*)}{\alpha^{(2)}(1)}},
+\quad
+\sigma_{11} = \sqrt{\frac{\alpha^{(1)}(\hat{z}^{(1)}_*)}{\alpha^{(1)}(1)}} \\
+&\delta_{21} = \frac{p^{(1)}(\hat{z}^{(1)}_*)-p^{(2)}(1)}{\alpha(\hat{z}^{(1)}_*)},
+\quad
+\delta_{11} = \frac{p^{(1)}(\hat{z}^{(1)}_*)-p^{(1)}(1)}{\alpha^{(1)}(\hat{z}^{(1)}_*)}
+\quad
+\end{aligned}$$ then,
+$$\gamma_{21} = \sigma_{21} \gamma_{1*} \sqrt{1-\frac{\delta_{21}}{\left(\gamma_{1*}\right)^2}},
+\quad
+\gamma_{11} = \sigma_{11} \gamma_{1*} \sqrt{1-\frac{\delta_{11}}{\left(\gamma_{1*}\right)^2}}$$
+They can be expand into inverse power series of $\gamma_{1*}$. Plug in
+([\[eq:leakylog\]](#eq:leakylog){reference-type="ref"
+reference="eq:leakylog"}), then expand the left hand side into inverse
+power series of $\gamma_{1*}$:
+$$2 i \gamma_{1*} \approx A_0 + \frac{A_2}{\left(\gamma_{1*}\right)^2} + \frac{A_4}{\left(\gamma_{1*}\right)^4} \ldots$$
+where $$\begin{aligned}
+    A_0 &= 2 i m \pi + \log \left( \frac{\sigma_{21} t_{11} + \sigma_{11} t_{22}}{\sigma_{21} t_{11} - \sigma_{11} t_{22}} \right)\\
+    A_2 &= \frac{(-\delta_{11} + \delta_{21}) \sigma_{11} \sigma_{21} t_{11} t_{22}}
+{(\sigma_{21} t_{11} - \sigma_{11} t_{22})(\sigma_{21} t_{11} + \sigma_{11} t_{22})}\\
+    A_4 &= \frac{
+(\delta_{11} - \delta_{21}) \sigma_{11} \sigma_{21} t_{11} t_{22} 
+\left( - (\delta_{11} + 3 \delta_{21}) \sigma_{21}^2 t_{11}^2 
++ (3 \delta_{11} + \delta_{21}) \sigma_{11}^2 t_{22}^2 \right)
+}{
+4 \left( \sigma_{21}^2 t_{11}^2 - \sigma_{11}^2 t_{22}^2 \right)^2
+} 
+\end{aligned}$$ asymptotic solutions of different orders
+$\tilde{\gamma}_{1*}^n$ are: $$\begin{aligned}
+    \tilde{\gamma}_{1*}^0 &= A_0/2i \nonumber\\
+    \tilde{\gamma}_{1*}^2 &= \left(A_0 + \frac{A_2}{\left(\tilde{\gamma}_{1*}^0\right)^2}\right)/2i\nonumber\\
+    \tilde{\gamma}_{1*}^4 &= \left(A_0 + \frac{A_2}{\left(\tilde{\gamma}_{1*}^2\right)^2} +\frac{A_4}{\left(\tilde{\gamma}_{1*}^2\right)^4}\right)/2i
+    \label{eq:leakymodes}
+\end{aligned}$$ And the eigenvalue approximations $\tilde{\lambda}^i$
+can by solved from $\tilde{\gamma}_{1*}^n$ by
+$\tilde{\lambda}_n = p^{(1)}(\hat{z}^{(1)}_*)-\alpha^{(1)}(\hat{z}^{(1)}_*)\left(\tilde{\gamma}_{1*}^n\right)^2, \quad n = 0,2,4$
+
+## Berenger mode
+
+Berenger modes would let $e^{-2i\gamma^{(l)}} \approx 0$ dispersion
+relation
+([\[eq:fulldespersionrelation\]](#eq:fulldespersionrelation){reference-type="ref"
+reference="eq:fulldespersionrelation"}) can be reduced to
+$$-\frac{\gamma_{21}t_{11}-\gamma_{11}t_{22}}{\gamma_{21}t_{11}+\gamma_{11}t_{22}} \approx e^{2 i  (\gamma^{(3)} (\hat{D_1}-D) + \int_1^D \gamma^{(2)}(z)\, dz) }
+   \label{eq:berengermode}$$ Similar from the discussion in Leaky modes,
+we assumes
+$\int_1^D \gamma^{(2)}(z) \, dz = (D-1)\gamma(\hat{z}^{(2)}_*)$, and
+denote $\gamma_{2*} = \gamma(\hat{z}^{(2)}_*)$. And we proceed to expand
+the $\gamma_{21}, \gamma_{11}, \gamma_{2*}$ into inverse power series of
+$\gamma^{(3)}$ : Firstly, denote $$\begin{aligned}
+&\tau_{21} = \sqrt{\frac{\alpha_{(3)}}{\alpha^{(2)}(1)}},
+\quad
+\tau_{11} = \sqrt{\frac{\alpha_{(3)}}{\alpha^{(1)}(1)}},
+\quad 
+\tau_{2*} = \sqrt{\frac{\alpha_{(3)}}{\alpha(\hat{z}^{(2)}_*)}},\nonumber\\
+&\epsilon_{21} = \frac{p^{(3)}-p^{(2)}(1)}{\alpha_{(3)}},
+\quad
+\epsilon_{11} = \frac{p^{(3)}-p^{1}(1)}{\alpha_{(3)}},
+\quad
+\epsilon_{2*} = \frac{p^{(3)}-p(\hat{z}^{(2)}_*)}{\alpha_{(3)}},\label{eq:tauepsdefine}
+\end{aligned}$$ In particular, as we analysed in
+appendix[6](#appendix:proofofDgammaeq){reference-type="ref"
+reference="appendix:proofofDgammaeq"}, $\epsilon_{2*}$ is negligible
+when the derivative of interface function $h(x)$ are small. As a result,
+zero order expansion for $\gamma_{2*}$ is enough:
+$\gamma_{2*}\approx \tau_{2*} \gamma^{(3)}$. After logarithm and inverse
+power series expansion
+([\[eq:berengermode\]](#eq:berengermode){reference-type="ref"
+reference="eq:berengermode"}) is approximated by
+$$2i \gamma^{(3)}\left[ (\hat{D_1}-D) + \tau_{2*}(D-1)\right] \approx B_0 + \frac{B_2}{\left(\gamma^{(3)}\right)^2} +\frac{B_4}{\left(\gamma^{(3)}\right)^4} + \ldots  \quad \quad m \in \mathbb{Z}$$
+
+$$\begin{aligned}
+    B_0 &= 2 i m \pi + \log \left( \frac{t_{22} \tau_{11} - t_{11} \tau_{21}}{t_{22} \tau_{11} + t_{11} \tau_{21}} \right)\\
+    B_2 &= \frac{(-\epsilon_{11} + \epsilon_{21}) t_{11} t_{22} \tau_{11} \tau_{21}}
+{(t_{22} \tau_{11} - t_{11} \tau_{21}) (t_{22} \tau_{11} + t_{11} \tau_{21})} \\
+    B_4 &= \frac{
+(\epsilon_{11} - \epsilon_{21}) t_{11} t_{22} \tau_{11} \tau_{21} 
+\left( - (3 \epsilon_{11} + \epsilon_{21}) t_{22}^2 \tau_{11}^2 
++ (\epsilon_{11} + 3 \epsilon_{21}) t_{11}^2 \tau_{21}^2 \right)
+}{
+4 \left( t_{22}^2 \tau_{11}^2 - t_{11}^2 \tau_{21}^2 \right)^2
+}
+\end{aligned}$$ Asymptotic solutions of different orders are:
+$$\begin{aligned}
+    \tilde{\gamma}^{(3)\,0} &= B_0/ 2i \left[ (\hat{D_1}-D) + \tau_{2*}(D-1)\right] \nonumber \\
+    \tilde{\gamma}^{(3)\,2} &= \left(B_0 + \frac{B_2}{\left(\tilde{\gamma}^{(3)\,0}\right)^2}\right)\bigg{/}2i \left[ (\hat{D_1}-D) + \tau_{2*}(D-1)\right] \nonumber\\
+    \tilde{\gamma}^{(3)\,4} &= \left(B_0 + \frac{B_2}{\left(\tilde{\gamma}^{(3)\,2}\right)^2} +\frac{B_4}{\left(\tilde{\gamma}^{(3)\,2}\right)^4}\right)\bigg{/}2i \left[ (\hat{D_1}-D) + \tau_{2*}(D-1)\right]
+    \label{eq:berengermodes}
+\end{aligned}$$ And the eigenvalue approximations $\tilde{\lambda}^i$
+can be solved by
+$\tilde{\lambda}_n = p^{(3)}-\alpha^{(3)}\left(\tilde{\gamma}^{(3) \, n}\right)^2 \quad n = 0,2,4$
+
+# Numerical example
+
+In this example, we set $D = 2, D_1 = 4$, and the stratified wave guide
+profile is $$\kappa = \begin{cases}
+    16 \quad z < h(x)\\
+    14.4 \quad z>h(x)
+\end{cases}
+\quad
+\rho = \begin{cases}
+    1 \quad z < h(x)\\
+    1.7 \quad z>h(x)
+\end{cases}$$
+
+we chose the curve interface
+$$h(x) = 1 - 0.2 e^{-10 \left(x/10 - 0.5\right)^2}$$ and compute the
+eigenvalues at $x = 6$.
+
+The PML parameter is $$\sigma(\hat{z}) =
+\begin{cases} 
+0, & 0 < \hat{z} \leq H \\
+5 t^3 / (1 + t^2), & H < \hat{z} \leq D_1 
+\end{cases}$$ $$t = \frac{\hat{z} - H}{D_1 - H}, \quad H = 3.5$$
+
+We first compare our method with Finite Difference Methods(FDM). In FDM,
+we divide $[0, D_1]$ to 1000 equally spaced grids. In our new method,
+The first and second layer $[0,1], [1,D]$ are both divided to 50 sub
+intervals for interpolation. Müller's method is applied to solve the
+relation we derived
+([\[eq:despersionrelation\]](#eq:despersionrelation){reference-type="ref"
+reference="eq:despersionrelation"}),by using eigenvalues from FDM as the
+first initial guess.
+
+![comparing our method with FDM](FDM compare.jpg){#fig:compareFDM
+width="0.8\\linewidth"}
+
+From figure[2](#fig:compareFDM){reference-type="ref"
+reference="fig:compareFDM"}, our method agrees well with FDM.
+
+Next, we verified asymptotic solutions we derived
+([\[eq:leakymodes\]](#eq:leakymodes){reference-type="ref"
+reference="eq:leakymodes"})([\[eq:berengermodes\]](#eq:berengermodes){reference-type="ref"
+reference="eq:berengermodes"}), by using it as initial guesses to solve
+eigenvalues from our new
+relation.Figure[3](#fig:leakycompare){reference-type="ref"
+reference="fig:leakycompare"} shows the Leaky modes, and
+figure[4](#fig:Berengercompare){reference-type="ref"
+reference="fig:Berengercompare"} listed a few Berenger modes. The
+numerical experiments verified the asymptotic solutions can serve as
+reasonable initial guesses.
+
+![Leaky modes](leakycompare.jpg){#fig:leakycompare
+width="0.8\\linewidth"}
+
+![Berenger modes](berenger compare.jpg){#fig:Berengercompare
+width="0.8\\linewidth"}
+
+# Appendix {#appendix:proofofDgammaeq}
+
+We will proof the therm: $$\begin{aligned}
+    &\text{if }\underset{x \in [0,L]}{\max}\{|h'(x)|, |h''(x)|\} < \delta   \label{eq:dhsmallcond}\\
+    &\text{then} |\gamma^{(2)}(D) \bar{t}_{22} - \gamma^{(3)} \bar{t}_{11}| = O(\delta) \label{eq:appmaintheory}
+\end{aligned}$$ where $O(\delta)$ is a small term with the same order as
+$\delta$.
+
+This is therm used to simplify the transfer matrix across the second
+interface([\[eq:TDtransfermat\]](#eq:TDtransfermat){reference-type="ref"
+reference="eq:TDtransfermat"})
+
+Firstly, I will show $\eta^{(2)}(D) \text{ and } \eta^{(3)}$ from
+([\[eq:transformedhelmholtz\]](#eq:transformedhelmholtz){reference-type="ref"
+reference="eq:transformedhelmholtz"}) are close when
+([\[eq:dhsmallcond\]](#eq:dhsmallcond){reference-type="ref"
+reference="eq:dhsmallcond"}) is satisfied. Their expressions are:
+$$\begin{array}{l}
+\eta^{(2)}(\hat{x}, \hat{z})=\left\{\frac { [ ( D - h ( x ) ) / h ^ { \prime } ( x ) ] ^ { 2 } + ( D - z ) ^ { 2 } } { [ D - h ( x ^ { * } ) ] ^ { 2 } } \left[\frac { h ^ { 2 } ( x ^ { * } ) } { h ^ { 2 } ( \hat { x } ) } \left(-\frac{3}{4} \frac{\left(h^{\prime}(\hat{x})\right)^4}{h^2(\hat{x})}\right.\right.\right. \\
+\left.\quad+\frac{\left(h^{\prime}(\hat{x})\right)^4 h^{\prime \prime}(\hat{x})}{h(\hat{x})}+\frac{1}{4}\left(h^{\prime \prime}(\hat{x})\right)^2-\frac{1}{2} h^{\prime}(\hat{x}) h_i^{\prime \prime \prime}(\hat{x})\right)+\frac{D\left(h^{\prime}\left(x^*\right)\right)^2}{h\left(x^*\right)\left(D-h\left(x^*\right)\right)\left[1+\left(h^{\prime}\left(x^*\right)\right)^2\right]^2} \\
+\left.\quad \times\left(\frac{3}{4} \frac{\left(h^{\prime}\left(x^*\right)\right)^2\left(D-2 h\left(x^*\right)\right)}{h\left(x^*\right)\left(D-h\left(x^*\right)\right)}-\frac{h^{\prime \prime}\left(x^*\right)}{1+\left(h^{\prime}\left(x^*\right)\right)^2}\right)\right]+\frac{2\left(h^{\prime}(x)\right)^2}{(D-h(x))^2}+\frac{2 h^{\prime \prime}(x)}{D-h(x)}+\frac{h^{\prime \prime \prime}(x)}{2 h^{\prime}(x)} \\
+\left.\quad-\frac{1}{4} \frac{\left(h^{\prime \prime}(x)\right)^2}{\left(h^{\prime}(x)\right)^2}+\kappa^2(x, z)\right\} \frac{(h(\hat{x}))^2\left(D-h\left(x^*\right)\right)^2\left(h^{\prime}(x)\right)^2}{\left(h\left(x^*\right)\right)^2\left(h^{\prime}(\hat{x})\right)^2\left[(D-h(x))^2+\left(h^{\prime}(x)\right)^2(D-z)^2\right]} .
+\end{array}$$ $$\begin{array}{l}
+\eta_{(3)}(\hat{x}, \hat{z})=\frac{h^{\prime \prime}(x)}{h(\hat{x})}-\frac{3}{4}\left[\frac{h^{\prime}(\hat{x})}{h(\hat{x})}\right]^2+\frac{1}{4}\left[\frac{h^{\prime \prime}(\hat{x})}{h^{\prime}(\hat{x})}\right]^2-\frac{1}{2} \frac{h^{\prime \prime \prime}(\hat{x})}{h^{\prime}(\hat{x})} \\
+\quad+\left\{\frac{h^{\prime}\left(x^*\right) h(\hat{x})}{\left[1+\left(h^{\prime}\left(x^*\right)\right)^2\right] h^{\prime}(\hat{x}) h\left(x^*\right)}\right\}^2 \times \frac{D}{h\left(x^*\right)\left[D-h\left(x^*\right)\right]}\left\{\frac{3}{4} \frac{\left[D-2 h\left(x^*\right)\right]\left[h^{\prime}\left(x^*\right)\right]^2}{h\left(x^*\right)\left[D-h\left(x^*\right)\right]}\right. \\
+\\
+\left.\quad-\frac{h^{\prime \prime}\left(x^*\right)}{1+\left[h^{\prime}\left(x^*\right)\right]^2}\right\}+\left\{\frac{h^{\prime}(x) h(\hat{x})\left[D-h\left(x^*\right)\right]}{h^{\prime}(\hat{x}) h\left(x^*\right)[D-h(x)]}\right\}^2 \times\left\{\kappa^2(x, z)+\frac{h^{\prime \prime}(x)}{2[D-h(x)]}\right. \\
+\left.\quad+\frac{2 h^{\prime \prime \prime}(x) h^{\prime}(x)-\left[h^{\prime \prime}(x)\right]^2}{4\left[h^{\prime}(x)\right]^2}+\frac{2 h^{\prime \prime}(x)[D-h(x)]+3\left[h^{\prime}(x)\right]^2}{4[D-h(x)]^2}\right\} .
+\end{array}$$ When the condition
+([\[eq:dhsmallcond\]](#eq:dhsmallcond){reference-type="ref"
+reference="eq:dhsmallcond"}) is satisfied,
+$\hat{x} \approx x \approx x^*$. So i assume they are the same x. At
+$\hat{z} = D$, the long expressions can be simplified to
+$$\eta^{(2)}(D) \approx -\frac{3}{4}\frac{h'^2}{h^2} + \frac{h'^2 h''}{h} + \frac{D}{h(D-h)(1+h'^2)^2}\left(\frac{3}{4}\frac{(D-2h)h'^2}{h(D-h)}-\frac{h''}{1+h'^2}\right) + \left(\frac{2h'}{D-h} \right)^2 + \frac{2 h''}{D-h} + \kappa^2$$
+$$\eta^{(3)} \approx\frac{h''}{h} -\frac{3}{4}\frac{h'^2}{h^2} + \frac{D}{h(D-h)(1+h'^2)^2}\left(\frac{3}{4}\frac{(D-2h)h'^2}{h(D-h)}-\frac{h''}{1+h'^2}\right) + \kappa^2 + \frac{h''}{(D-h)} + \frac{3h'}{4(D-h)^2}$$
+where $$h = h(x), h' = h'(x), h'' = h''(x), \kappa = \kappa_2$$ subtract
+them both, the remaining terms are all the same order as
+$h'(x), h''(x)$, so by condition
+([\[eq:dhsmallcond\]](#eq:dhsmallcond){reference-type="ref"
+reference="eq:dhsmallcond"}), $$| \eta^{(3)}- \eta^{(2)}(D)| = O(\delta)
+\label{eq:etaminuscondi}$$
+
+In addition, at $\hat{z} = D$, $\beta, \alpha', \beta'$ in equation
+([\[eq:modified_eigenvalueproblem\]](#eq:modified_eigenvalueproblem){reference-type="ref"
+reference="eq:modified_eigenvalueproblem"}) are all zero. Therefore,
+$p^{(2)}(D) = \eta^{(2)}(D) , p^{(3)} =  \eta^{(3)}$. By the definition
+of $\gamma$, we have
+$\gamma^{(\ell)}(D) = \sqrt{\frac{\eta^{(\ell)}(D)-\lambda}{\alpha^{(\ell)}(D)}}, \ell = 2,3$.
+
+Next, we will show
+$\frac{\bar{t}_{11}}{\sqrt\alpha^{(3)}} = \frac{\bar{t}_{22}}{\sqrt{\alpha^{(2)}(D)}}$.Firstly,
+Denote $w^{(2)}_D = w|_{D^-},w^{(3)} = w|_{D^+}$, by the definition of
+$\overline{T}$ and
+([\[eq:secondinterfacematrix\]](#eq:secondinterfacematrix){reference-type="ref"
+reference="eq:secondinterfacematrix"}),
+$$\bar{t}_{11} = \frac{w^{(2)}_D}{w^{(3)}}, \quad \bar{t}_{22} = \frac{(D-1)w^{(2)}_D}{(D-h(x))w^{(3)}}$$plug
+in the expression for $w$: $$\begin{aligned}
+&w^{(2)}_D=\sqrt{\frac{h(\hat{x})}{h^{\prime}(\hat{x})} \cdot \frac{D-h\left(x^*\right)}{h\left(x^*\right)} \cdot \frac{h^{\prime}(x)}{[D-h(x)]^2}}\\
+&w^{(3)}=\sqrt{\frac{h(\hat{x})}{h^{\prime}(\hat{x})} \cdot \frac{D-h\left(x^*\right)}{h\left(x^*\right)} \cdot \frac{h^{\prime}(x)}{[D-h(x)]}}
+\end{aligned}$$ we have
+$$\bar{t}_{11} = \frac{1}{\sqrt{D-h(x)}}, \quad \bar{t}_{22} = \frac{D-1}{(D-h(x))^{\frac{3}{2}}}
+\label{eq:bartexpr}$$ What's more, by the expressions for $\alpha^{(2)}$
+and $\alpha^{(3)}$: $$\begin{aligned}
+&\alpha^{(2)}=(D-1)^2 \frac{\left[D-h\left(x^*\right)\right]^2\left[h^{\prime}(x)\right]^2[h(\hat{x})]^2}{[D-h(x)]^4\left[h^{\prime}(\hat{x})\right]^2\left[h\left(x^*\right)\right]^2}\\
+&\alpha^{(3)}=\frac{\left[D-h\left(x^*\right)\right]^2\left[h^{\prime}(x)\right]^2[h(\hat{x})]^2}{[D-h(x)]^2\left[h^{\prime}(\hat{x})\right]^2\left[h\left(x^*\right)\right]^2}
+\end{aligned}$$ We can see
+$$\sqrt{\alpha^{(2)}(D)} = \frac{D-1}{D-h(x)}\sqrt{\alpha^{(3)}}
+\label{eq:sqrtalpharelation}$$ From
+([\[eq:bartexpr\]](#eq:bartexpr){reference-type="ref"
+reference="eq:bartexpr"})([\[eq:sqrtalpharelation\]](#eq:sqrtalpharelation){reference-type="ref"
+reference="eq:sqrtalpharelation"}), it is easy to see
+that$$\frac{\bar{t}_{11}}{\sqrt{\alpha^{(3)}}} =  \frac{1}{\sqrt{(D-h(x))\alpha^{(3)}}} = \frac{\bar{t}_{22}}{\sqrt{\alpha^{(2)}(D)}} 
+     \label{eq:tbysqrtalpharelation}$$
+
+We are now ready to show the main
+therm([\[eq:appmaintheory\]](#eq:appmaintheory){reference-type="ref"
+reference="eq:appmaintheory"})
+$$|\gamma^{(2)}(D) \bar{t}_{22} -\gamma^{(3)} \bar{t}_{11}|  = \left|\frac{\bar{t}_{22}}{\sqrt{\alpha^{(2)}(D)}}\sqrt{\eta_{2D}-\lambda}-\frac{\bar{t}_{11}}{\sqrt{\alpha^{(3)}}}\sqrt{\eta^{(3)}-\lambda}\right|$$By
+the
+relation([\[eq:tbysqrtalpharelation\]](#eq:tbysqrtalpharelation){reference-type="ref"
+reference="eq:tbysqrtalpharelation"}) and
+([\[eq:etaminuscondi\]](#eq:etaminuscondi){reference-type="ref"
+reference="eq:etaminuscondi"}), the right hand side of the above
+expression can be written as
+$$\left| \frac{1}{\sqrt{(D-h(x))\alpha^{(3)}}} \left( \sqrt{\eta^{(3)} + O(\delta) - \lambda} - \sqrt{\eta^{(3)} - \lambda} \right) \right|$$
+Expand the $O(\delta)$ to zero order:
+$\sqrt{\eta^{(3)} + O(\delta)- \lambda} = \sqrt{\eta^{(3)} -\lambda} + O(\delta)$,
+and plug this into the above expression, we have
+$$\left|\gamma^{(2)}(D) \bar{t}_{22} - \gamma^{(3)} \bar{t}_{11} \right|  = 
+\left| \frac{1}{\sqrt{(D-h(x))\alpha^{(3)}}} O(\delta) \right| = O(\delta)$$
+which proofed the
+therm([\[eq:appmaintheory\]](#eq:appmaintheory){reference-type="ref"
+reference="eq:appmaintheory"})
+
+With this therm, we can provide a brief explanation to
+$|p^{(3)}-p(\hat{z}^{(2)}_*)| =O(\delta)$: We can proof the derivatives
+of $\alpha^{(2)}, \beta^{(2)}, \eta^{(2)}$ are bounded by the
+derivatives of $h(x) \text{ namely, }\delta$. Thus
+$p^{(2)\, '}(\hat{z}) = O(\delta)$. We assumes $p^{(2)\, '}(\hat{z})$ is
+continuous in $(1^+,D^-)$, therefore,
+$|p(\hat{z})-p(\hat{z}^{(2)}_*)| \leq {\underset{\hat{z}\in (1^+, D^-)} {Sup} \{|p^{(2)\, '}(\hat{z})|}\} |\hat{z}-\hat{z}^{(2)}_*| = O(\delta)$.
+substitute $\hat{z}$ with $D^-$ gives
+$|p^{(2)}(D^-)-p^{(2)}(\hat{z}^{(2)}_*)|  = O(\delta)$. Apply the result
+of ([\[eq:appmaintheory\]](#eq:appmaintheory){reference-type="ref"
+reference="eq:appmaintheory"}),
+$|p_{3D}-p(\hat{z}^{(2)}_*)| \leq |p_{3D}-p_{2D}| + |p_{2D}-p(\hat{z}^{(2)}_*)| = O(\delta)$
