@@ -29,7 +29,7 @@ My primary research interests include the numerical solutions of equations in ma
 ## Projects Overview
 
 
-### [Approximating Dispersion Relations in a Stratified Waveguide with a Curved Interface in an Open Domain, and Computing Eigenpairs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/new%20method%20for%20eigenmodes%20in%20curved%20interface.pdf)
+### [Approximating Dispersion Relations in a Stratified Waveguide with a Curved Interface in an Open Domain, and Computing Eigenpairs](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/projects/Eigenvalue%20Equation%20in%202-Layer%20Wave%20Guide%20with%20a%20Curved%20Interface.pdf)
 
 The Helmholtz equation is commonly used to model wave propagation. Previous work has utilized an orthogonal coordinate transformation to flatten the curved interface and applied Perfectly Matched Layers (PML) to truncate the open domain for finite computational regions. However, the transformation introduces variable coefficients to the Helmholtz equation, complicating the analysis. Building on research that employs piecewise Kummer functions to approximate eigenfunctions under varying refractive indices, I adapted this method to the transformed Helmholtz equation, deriving an approximate dispersion relation for the eigenpairs. By developing asymptotic solutions, the eigenvalues and eigenfunctions can be computed numerically using Muller's method. This work is under the guidiance of professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
 
