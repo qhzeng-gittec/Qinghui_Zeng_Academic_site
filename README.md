@@ -1,4 +1,5 @@
 ## Personal Statement
+<img src="https://github.com/user-attachments/assets/a838e8f8-d0f0-4ce5-b84f-5b5e5cbafecd" alt="image" width="300" align="right">
 
 I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.edu.cn/), majoring in Information and Computational Science, under math department. I will be graduated by the summer of 2025. and I am seeking graduate study opportunities in applied or computational mathematics.
 
