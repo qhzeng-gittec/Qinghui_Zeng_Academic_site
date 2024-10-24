@@ -25,7 +25,7 @@ Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listeni
 
 ## Research Interests
 
-My primary research interests include the numerical solutions of equations in mathematical physics, mathematical modeling of engineering problems, and fluid simulations. 
+My primary research interests include numerical schemes for PDEs related to physics and the theoretical analysis of PDEs
 
 ## Projects Overview
 
