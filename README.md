@@ -30,7 +30,7 @@ My primary research interests include numerical schemes for PDEs related to phys
 ## Projects Overview
 
 
-### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/projects/Computation%20of%20Eigenmodes%20in%202-Layer%20Waveguide%20with%20a%20Curved%20Interface.pdf)
+### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://drive.google.com/file/d/1-giY1xNVN1cCthW2_tEGN3MSqhV22StS/view?usp=drive_link)
 
 The Helmholtz equation is commonly used to model wave propagation. Previous work has utilized an orthogonal coordinate transformation to flatten the curved interface and applied Perfectly Matched Layers (PML) to truncate the open domain for finite computational regions. However, the transformation introduces variable coefficients to the Helmholtz equation, complicating the analysis. Building on research that employs piecewise Kummer functions to approximate eigenfunctions under varying refractive indices, I adapted this method to the transformed Helmholtz equation, deriving an approximate dispersion relation for the eigenpairs. By developing asymptotic solutions, the eigenvalues and eigenfunctions can be computed numerically using Muller's method. This work is under the guidiance of professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
 
