@@ -1,4 +1,3 @@
-## Personal Statement
 <img src="https://github.com/user-attachments/assets/a838e8f8-d0f0-4ce5-b84f-5b5e5cbafecd" alt="image" width="300" align="right">
 
 I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.edu.cn/), majoring in Information and Computational Science, under math department. I will be graduated by the summer of 2025. and I am seeking graduate study opportunities in applied or computational mathematics.
@@ -24,9 +23,7 @@ A complete transcript is available [here](https://github.com/qhzeng-gittec/Qingh
 Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0) and a total score of 326 in the GRE General Test (Verbal: 156, Quantitative: 170).
 
 ## Research Interests
-
-My primary research interests include numerical schemes for PDEs related to physics and the theoretical analysis of PDEs
-
+My research interest covers various areas of applied mathematic, including mathematical modeling of physical processes, analysis of PDEs arising from physics and engineering. and numerical methods for solving these equations.
 ## Projects Overview
 
 
