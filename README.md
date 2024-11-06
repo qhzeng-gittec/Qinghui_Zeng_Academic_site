@@ -27,20 +27,21 @@ My research interest covers various areas of applied mathematic, including mathe
 ## Projects Overview
 
 
-### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://drive.google.com/file/d/1-giY1xNVN1cCthW2_tEGN3MSqhV22StS/view?usp=drive_link)
+### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://drive.google.com/file/d/1-giY1xNVN1cCthW2_tEGN3MSqhV22StS/view?usp=drive_link)&nbsp;&nbsp;&nbsp;&nbsp;(2024.6 – )
 
 The Helmholtz equation is commonly used to model wave propagation. In this work, we consider an open waveguide that is separated into two layers along the depth axis by a curved interface. Previous studies have utilized an orthogonal coordinate transformation, followed by an equation transformation to flatten the curved interface, then, a Perfectly Matched Layer (PML) is added to truncate the open domain for finite computational regions. However, the equation transformation results in a new partial differential equation with varying coefficients, complicating the analysis. Building on research that uses piecewise Kummer functions to approximate eigenfunctions, we adapted this method to the transformed Helmholtz equation and derived an iterative relation for the eigenmode. Additionally, we derived the asymptotic solution for this relation, which serves as an initial guess to numerically solve for the eigenvalues. Formulas were derived separately for the optical waveguide in the Transverse Electric (TE) and Transverse Magnetic (TM) cases. Numerical examples demonstrate that our asymptotic solutions converge well to the exact eigenvalue.
 
 I am still working on it for publication. This work is being conducted under the guidance of Professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
+___
 
-### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs ](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)
+**Note:** Below are some older projects I have done on data-driven numerical methods for PDEs. However, my research interest has shifted to a more analytical approach for physics-related PDEs or traditional numerical methods.
+
+
+### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.3)
 
 This project explores a hybrid time-marching approach that integrates neural networks with traditional numerical methods to solve nonlinear partial differential equations (PDEs). By utilizing convolutional neural networks (CNNs) to approximate spatial derivatives and incorporating time-marching schemes like Euler's method, the approach aims to combine data-driven techniques with physically meaningful temporal evolution.
 
-### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md)
+### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md))&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.3)
 
 This project explores using neural networks to solve PDEs by representing solutions with locally supported spline basis functions. Inspired by the finite element method (FEM), where local basis functions approximate solutions, the research aims to train a neural network to learn the coefficients of these splines.
-
-The aboves are some small projects I have done during my undergraduate studies. While some did not become papers, they were interesting trials to find out my interests. From my research experience, I have summarized a few methods on [how to do research](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/research_experience.md).
-
 
