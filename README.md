@@ -34,7 +34,7 @@ The Helmholtz equation is commonly used to model wave propagation. In this work,
 I am still working on it for publication. This work is being conducted under the guidance of Professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
 ___
 
-**Note:** Below are some older projects I have done on data-driven numerical methods for PDEs. However, my research interest has shifted to a more analytical approach for physics-related PDEs or traditional numerical methods.
+**Note:** Below are some older projects I have done on data-driven numerical methods for PDEs. However, my research interest has shifted to a more analytical approach for physics-related PDEs or classical numerical methods.
 
 
 ### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.3)
