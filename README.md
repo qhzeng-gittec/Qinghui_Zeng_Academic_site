@@ -16,7 +16,6 @@ My studies focus on both fundamental mathematical knowledge and its applications
 | Differential Geometry       |
 | Ordinary Differential Equations |
 | Optimization Methods        |
-| Applied Multivariable Statistics |
 
 A complete transcript is available [here](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/coursegrades.md).
 
@@ -24,6 +23,7 @@ Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listeni
 
 ## Research Interests
 My research interest covers various areas of applied mathematic, including mathematical modeling of physical processes, analysis of PDEs arising from physics and engineering. and numerical methods for solving these equations.
+The [SOP](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/Statement%20of%20Purpose.md) describes how my interest has formed.  
 ## Projects Overview
 
 
