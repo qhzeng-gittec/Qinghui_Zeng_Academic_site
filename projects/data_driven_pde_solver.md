@@ -2,6 +2,7 @@
 ![Cylinder Flow Simulation](https://github.com/user-attachments/assets/bb4551ae-25c8-45bc-946f-128cd005efa8)
 
 <p><sub>This image is not a result of the research presented here.</sub></p>
+
 ## Introduction
 
 Many physical phenomena evolve over time, where their future states depend on the current state and interactions with neighboring states. For example, the momentum equation in the Navier-Stokes (NS) equations is based on physical principles where the change in momentum within a small time period is related to momentum diffusion and external forces acting on the control volume. These phenomena are modeled through various orders of spatial derivatives and their nonlinear combinations.
