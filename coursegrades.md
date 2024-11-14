@@ -1,5 +1,5 @@
 
-# Major Courses grades
+# Core Courses grades
 **Note**: courses are graded on a scale of 100.
 | Course Code | Course Name                         | Course Type | Grade | Credit | Grade*Credit  | Semester           |
 |-------------|-------------------------------------|-------------|-------|--------|------|--------------------|
@@ -32,7 +32,7 @@
 | 08060226    | C++ Programming                     | Elective    | 89    | 2      | 7.8  | 2023-2024 Spring   |
 
 
-**Weighted average Major Courses Grades**: **88.9**
+**Weighted average Core Courses Grades**: **88.9**
 
 The origional transcipts in Chinese is at [here](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/%E6%88%90%E7%BB%A9%E5%8D%95.pdf)
 
