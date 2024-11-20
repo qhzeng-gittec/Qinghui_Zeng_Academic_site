@@ -31,17 +31,17 @@ The [SOP](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/Statement%2
 
 The Helmholtz equation is commonly used to model wave propagation. In this work, we consider an open waveguide that is separated into two layers along the depth axis by a curved interface. Previous studies have utilized an orthogonal coordinate transformation, followed by an equation transformation to flatten the curved interface, then, a Perfectly Matched Layer (PML) is added to truncate the open domain for finite computational regions. However, the equation transformation results in a new partial differential equation with varying coefficients, complicating the analysis. Building on research that uses piecewise Kummer functions to approximate eigenfunctions, we adapted this method to the transformed Helmholtz equation and derived an iterative relation for the eigenmode. Additionally, we derived the asymptotic solution for this relation, which serves as an initial guess to numerically solve for the eigenvalues. Formulas were derived separately for the optical waveguide in the Transverse Electric (TE) and Transverse Magnetic (TM) cases. Numerical examples demonstrate that our asymptotic solutions converge well to the exact eigenvalue.
 
-I am still working on it for publication. This work is being conducted under the guidance of Professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
-___
-
-**Note:** Below are some older projects I have done on data-driven numerical methods for PDEs. However, my research interest has shifted to a more analytical approach for physics-related PDEs or classical numerical methods.
-
+This work is being conducted under the guidance of Professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm)
 
 ### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.3)
 
-This project explores a hybrid time-marching approach that integrates neural networks with traditional numerical methods to solve nonlinear partial differential equations (PDEs). By utilizing convolutional neural networks (CNNs) to approximate spatial derivatives and incorporating time-marching schemes like Euler's method, the approach aims to combine data-driven techniques with physically meaningful temporal evolution.
+This project explores a hybrid time-marching approach that integrates neural networks with traditional numerical methods to solve nonlinear partial differential equations (PDEs). By utilizing convolutional neural networks (CNNs) to approximate spatial derivative operators and incorporating time-marching schemes like Euler's method, the approach aims to combine data-driven techniques with physically meaningful temporal evolution.
 
 ### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md))&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.3)
 
-This project explores using neural networks to solve PDEs by representing solutions with locally supported spline basis functions. Inspired by the finite element method (FEM), where local basis functions approximate solutions, the research aims to train a neural network to learn the coefficients of these splines.
+This project draws inspiration from the finite element method (FEM) to develop a data-driven approach for solving PDEs. It represents the solutions of PDEs by a linear combination of locally supported spline basis functions, and a neural network is then trained to map the parameters of the PDE to the coefficients of these basis functions. 
+
+###[Seinformer: a deep learning framework combining EPInformer and Sei to predict gene expression from DNA sequence](https://github.com/JasonLinjc/Seinformer)
+
+This project, in collaboration with [Dr. Jiecong Lin](https://www.linkedin.com/in/jiecong-lin-0665902a2), a postdoctoral researcher at Harvard Medical School, focused on improving the performance of EPInformer—a transformer-based machine learning model developed by Dr. Lin to predict gene expression levels using regulatory DNA fragments and the DNA sequences themselves. To enhance its accuracy, I integrated SEI, a CNN-based model specifically designed to extract gene features from DNA sequences, as a DNA sequence encoder within EPInformer. This integration led to a significant improvement in the model's predictive accuracy.
 
