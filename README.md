@@ -43,10 +43,10 @@ In this work, I extend this algorithm to three-dimensional case, enabling it to 
 ## Data-Driven Fluid Dynamics
 These works are supervised by Professor [Xiaoning Zheng](https://scholar.google.com/citations?user=rXW31d8AAAAJ&hl=zh-CN).
 
-### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.4)
+### [Hybrid Time-Marching with Neural Network Approach for Solving Nonlinear PDEs](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/data_driven_pde_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.10 – 2024.4)
 This project explores a hybrid time-marching approach that integrates neural networks with traditional numerical methods to solve nonlinear partial differential equations (PDEs). By utilizing convolutional neural networks (CNNs) to approximate spatial derivative operators and incorporating time-marching schemes like Euler's method, the approach aims to combine data-driven techniques with physically meaningful temporal evolution.
 
-### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.11 – 2024.4)
+### [Data-Driven PDE Solver of Finite Basis Representation](https://github.com/qhzeng-gittec/helloitisqinghui/blob/main/projects/finite_basis_neural_solver.md)&nbsp;&nbsp;&nbsp;&nbsp;(2023.10 – 2024.4)
 This project draws inspiration from the finite element method (FEM) to develop a data-driven approach for solving PDEs. It represents the solutions of PDEs by a linear combination of locally supported spline basis functions, and a neural network is then trained to map the parameters of the PDE to the coefficients of these basis functions.
 
 ---
