@@ -22,7 +22,7 @@ Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listeni
 
 ## Research Interests
 My research interest covers various areas of applied mathematic, including mathematical modeling of physical processes, analysis of PDEs arising from physics and engineering. and numerical methods for solving these equations.
-The [SOP](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/Statement%20of%20Purpose.md) describes how my interest has developed.  
+
 ## Projects Overview
 I have worked on research projects in three main areas: wave and waveguide computation, data-driven fluid dynamics, and Machine Learning in Bioinformatics. Among these, my primary interest lies in using mathematical analysis and classical numerical methods to study and model physical phenomena, as demonstrated in my work on wave propagation and waveguide computations. These projects have honed my skills in coding, academic writing, and effectively communicating with professors to discuss and refine research ideas, better preparing me for future research endeavors.
 
