@@ -17,7 +17,6 @@ My studies focus on both fundamental mathematical knowledge and its applications
 | Ordinary Differential Equations |
 | Optimization Methods        |
 
-A complete transcript is available [here](https://github.com/qhzeng-gittec/Qinghui_Zeng_CV/blob/main/coursegrades.md).
 
 Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0) and a total score of 326 in the GRE General Test (Verbal: 156, Quantitative: 170).
 
