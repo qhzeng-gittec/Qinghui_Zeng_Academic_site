@@ -46,6 +46,6 @@ where $c_{ij}$ are the coefficients to be learned. The dataset for training the 
 
 ## Remarks
 
-This project was under the guidiance of professor [Xiaoning Zheng](https://scholar.google.com/citations?user=rXW31d8AAAAJ&hl=en-US) carried out between March and April 2024. Although the approach shows potential, the implementation was not fully completed due to limited guidance from my professor, who was unavailable during critical stages of the project. Moreover, machine learning models often require extensive tuning, which I was unable to accomplish on my own. 
+This project was under the guidiance of professor [Xiaoning Zheng](https://scholar.google.com/citations?user=rXW31d8AAAAJ&hl=en-US). Although the approach shows potential, the implementation was not fully completed, due to reasons similar to those encountered with another data-driven solver, as my interests shifted.
 
 Upon further exploration, I discovered that the structure of this model resembles Kolmogorov-Arnold Networks (KAN). Both approaches utilize a linear combination of basis functions—in this case, spline functions—to approximate data, and they update the coefficients by minimizing a loss function. In this sense, the model I proposed can be viewed as a single-layer KAN with one output.
