@@ -5,35 +5,45 @@ I’m Qinghui Zeng, an undergraduate at [Jinan University](https://english.jnu.e
 For inquiries, you can reach me at [zengqh23@outlook.com](mailto:zengqh23@outlook.com).
 
 ## Academic Qualifications
-My studies focus on both fundamental mathematical knowledge and its applications. I have completed several advanced courses:
 
-| Course                     |
-|----------------------------|
+My academic background emphasizes both fundamental mathematical theory and its applications. I have completed several advanced courses, including:
+
+| Course                                   |
+|-----------------------------------------|
 | Numerical Methods for Partial Differential Equations |
-| Real Analysis               |
-| General Physics             |
-| Topology                    |
-| Differential Geometry       |
-| Ordinary Differential Equations |
-| Optimization Methods        |
+| Real Analysis                           |
+| General Physics                         |
+| Topology                                |
+| Differential Geometry                   |
+| Ordinary Differential Equations         |
+| Optimization Methods                    |
 
+**GPA**:  
+- **Overall GPA**: 3.88/5.0  
+- **Major GPA**: 3.94/5.0  
 
-Additionally, I achieved an overall score of 7.0 in IELTS (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0) and a total score of 326 in the GRE General Test (Verbal: 156, Quantitative: 170).
+In 2023, I attended the UCLA Summer Session, where I completed two courses:  
+- **Differential Equations**: Grade A  
+- **Linear Models**: Grade A  
+
+Additionally, my standardized test scores are:  
+- **IELTS**: Overall 7.0 (Reading: 8.5, Listening: 7.5, Writing: 6.5, Speaking: 6.0)  
+- **GRE General Test**: Total 326 (Verbal: 156, Quantitative: 170)
 
 ## Research Interests
-My research interest covers various areas of applied mathematic, including mathematical modeling of physical processes, analysis of PDEs arising from physics and engineering. and numerical methods for solving these equations.
+I am particularly interested in using analysis and numerical approaches to understand physical processes.
 
 ## Projects Overview
-I have worked on research projects in three main areas: wave and waveguide computation, data-driven fluid dynamics, and Machine Learning in Bioinformatics. Among these, my primary interest lies in using mathematical analysis and classical numerical methods to study and model physical phenomena, as demonstrated in my work on wave propagation and waveguide computations. These projects have honed my skills in coding, academic writing, and effectively communicating with professors to discuss and refine research ideas, better preparing me for future research endeavors.
+My research experience spans three main areas: waveguide computation, data-driven fluid dynamics, and machine learning in bioinformatics. These projects reflect my growing interest in **traditional applied mathematics**, as demonstrated in my work on waveguide computation. Through this work, I have developed strong skills in coding, academic writing, and collaborating with professors to refine research ideas, all of which prepare me for advanced studies.
 
 ---
 ## Wave and Waveguide Computation
 These works are conducted under the guidance of Professor [Jianxin Zhu](https://faculty.jnu.edu.cn/xxkxjsxy/zjx2/list.htm).
 
-### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://drive.google.com/file/d/1-giY1xNVN1cCthW2_tEGN3MSqhV22StS/view?usp=drive_link)&nbsp;&nbsp;&nbsp;&nbsp;(2024.9 – )
+### [Computation of Eigenmodes in 2-Layer Waveguide with a Curved Interface](https://drive.google.com/file/d/1-giY1xNVN1cCthW2_tEGN3MSqhV22StS/view?usp=drive_link)(Paper)&nbsp;&nbsp;&nbsp;&nbsp;(2024.9 – )
 The Helmholtz equation is commonly used to model wave propagation. In this work, we consider an open waveguide that is separated into two layers along the depth axis by a curved interface. Previous studies have utilized an orthogonal coordinate transformation, followed by an equation transformation to flatten the curved interface, then, a Perfectly Matched Layer (PML) is added to truncate the open domain for finite computational regions. However, the equation transformation results in a new partial differential equation with varying coefficients, complicating the analysis. Building on research that uses piecewise Kummer functions to approximate eigenfunctions, we adapted this method to the transformed Helmholtz equation and derived an iterative relation for the eigenmode. Additionally, we derived the approximated solution for this relation, which serves as an initial guess to numerically solve for the eigenvalues. Formulas were derived separately for the optical waveguide in the Transverse Electric (TE) and Transverse Magnetic (TM) cases. Numerical examples demonstrate that our asymptotic solutions converge well to the exact eigenvalue.
 
-### [The DtN-Riccati Method for 3-D Helmholtz Equation](https://drive.google.com/file/d/1-64_bIOeH3vN1deOnDFdYVuF5J6dVYmc/view?usp=drive_link)&nbsp;&nbsp;&nbsp;&nbsp;(2024.5 – 2024.6)
+### [The DtN-Riccati Method for 3-D Helmholtz Equation](https://drive.google.com/file/d/1-64_bIOeH3vN1deOnDFdYVuF5J6dVYmc/view?usp=drive_link)(Paper)&nbsp;&nbsp;&nbsp;&nbsp;(2024.5 – 2024.6)
 An efficient approach for long-range computation of the Helmholtz equation in a waveguide is to reformulate it as the operator differential Riccati equation for the Dirichlet-to-Neumann (DtN) map. However, the original 1995 paper by Lu and McLaughlin that proposed this algorithm focused on 2D waveguides, whereas many real-world waveguides are inherently 3D.
 
 In this work, I extend this algorithm to three-dimensional case, enabling it to handle more complex sources and waveguides. I derive the radiation condition specific to the 3D Helmholtz equation and developed a finite basis version of the algorithm by expanding matrices onto local basis functions at each step, significantly reducing memory usage and computational costs. Numerical examples and comparisons validate the accuracy of the proposed method across different waveguides.
